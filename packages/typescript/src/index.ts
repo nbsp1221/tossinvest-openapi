@@ -11,3 +11,11 @@ export function getPackageInfo(): PackageInfo {
     version: VERSION,
   };
 }
+
+export { TossInvestApiError, TossInvestConnectionError } from './errors.js';
+export type {
+  TossInvestClientOptions,
+  TossInvestRequestOptions,
+  TossInvestResponseMeta,
+  TossInvestWithResponse,
+} from './types.js';
