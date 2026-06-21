@@ -252,6 +252,8 @@ Use `openapi-typescript`:
 - Input: `spec/upstream/openapi.json`
 - Output: `packages/typescript/src/generated/openapi.ts`
 - Script: `pnpm generate:types`
+- Generation uses `--default-non-nullable false` so schema fields with
+  `default` remain optional unless the OpenAPI schema explicitly requires them.
 - Generated file is committed to the repository.
 - Build does not implicitly regenerate types.
 - Generated type drift is checked with `openapi-typescript --check`.

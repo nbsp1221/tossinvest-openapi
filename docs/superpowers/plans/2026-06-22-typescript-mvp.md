@@ -89,8 +89,8 @@ devDependencies:
 In `packages/typescript/package.json`, add:
 
 ```json
-"generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts",
-"check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --check"
+"generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false",
+"check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false --check"
 ```
 
 Expected scripts include:
@@ -100,8 +100,8 @@ Expected scripts include:
   "build": "tsup src/index.ts --format esm --dts --clean --sourcemap --target node22",
   "format": "prettier . --write",
   "format:check": "prettier . --check",
-  "generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts",
-  "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --check",
+  "generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false",
+  "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false --check",
   "lint": "eslint .",
   "test": "vitest run",
   "typecheck": "tsc --noEmit"

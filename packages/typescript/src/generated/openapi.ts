@@ -1380,7 +1380,7 @@ export interface components {
              * @example DAY
              * @enum {string}
              */
-            timeInForce: "DAY" | "CLS";
+            timeInForce?: "DAY" | "CLS";
             /**
              * Format: decimal
              * @description 주문 수량 (주 단위). 지정한 수량만큼 주문합니다.
@@ -1408,7 +1408,7 @@ export interface components {
              * @default false
              * @example false
              */
-            confirmHighValueOrder: boolean;
+            confirmHighValueOrder?: boolean;
         } | {
             /**
              * @description 클라이언트 지정 주문 식별자. 멱등성 키로 사용됩니다.
@@ -1457,7 +1457,7 @@ export interface components {
              * @default false
              * @example false
              */
-            confirmHighValueOrder: boolean;
+            confirmHighValueOrder?: boolean;
         };
         OrderModifyRequest: {
             /**
@@ -1496,7 +1496,7 @@ export interface components {
              * @default false
              * @example false
              */
-            confirmHighValueOrder: boolean;
+            confirmHighValueOrder?: boolean;
         };
         OrderResponse: {
             /**
