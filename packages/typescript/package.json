@@ -19,6 +19,8 @@
     "build": "tsup src/index.ts --format esm --dts --clean --sourcemap --target node22",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
+    "generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts",
+    "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --check",
     "lint": "eslint .",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
@@ -27,6 +29,7 @@
     "@eslint/js": "10.0.1",
     "@types/node": "26.0.0",
     "eslint": "10.5.0",
+    "openapi-typescript": "7.13.0",
     "prettier": "3.8.4",
     "tsup": "8.5.1",
     "typescript": "6.0.3",
