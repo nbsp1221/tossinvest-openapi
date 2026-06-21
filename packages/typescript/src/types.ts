@@ -15,7 +15,7 @@ export interface TossInvestRequestOptions {
 export interface TossInvestResponseMeta {
   status: number;
   headers: Headers;
-  requestId?: string;
+  requestId?: string | undefined;
 }
 
 export interface TossInvestWithResponse<TData, TRaw> {

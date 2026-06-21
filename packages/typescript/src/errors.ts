@@ -2,9 +2,9 @@ export interface TossInvestApiErrorOptions {
   status: number;
   headers: Headers;
   body: unknown;
-  code?: string;
-  message?: string;
-  requestId?: string;
+  code?: string | undefined;
+  message?: string | undefined;
+  requestId?: string | undefined;
 }
 
 export class TossInvestApiError extends Error {
