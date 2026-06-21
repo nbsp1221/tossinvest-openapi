@@ -1,0 +1,19 @@
+[tasks.lint]
+description = "Run TypeScript lint"
+run = "pnpm lint"
+
+[tasks.format]
+description = "Run TypeScript format check"
+run = "pnpm format:check"
+
+[tasks.typecheck]
+description = "Run TypeScript typecheck"
+run = "pnpm typecheck"
+
+[tasks.test]
+description = "Run TypeScript tests"
+run = "pnpm test"
+
+[tasks.build]
+description = "Build TypeScript package"
+run = "pnpm build"

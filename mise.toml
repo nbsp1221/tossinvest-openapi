@@ -1,0 +1,46 @@
+monorepo_root = true
+
+[monorepo]
+config_roots = [".", "packages/typescript", "packages/python"]
+
+[tools]
+node = "22.16.0"
+pnpm = "10.34.2"
+python = "3.12.11"
+uv = "0.9.17"
+
+[tasks.install]
+description = "Install JavaScript and Python dependencies"
+run = "pnpm install && uv sync --all-packages"
+
+[tasks.lint]
+description = "Run TypeScript and Python linters"
+depends = ["//packages/typescript:lint", "//packages/python:lint"]
+
+[tasks.format]
+description = "Run TypeScript and Python format checks"
+depends = ["//packages/typescript:format", "//packages/python:lint"]
+
+[tasks.typecheck]
+description = "Run TypeScript and Python type checks"
+depends = ["//packages/typescript:typecheck", "//packages/python:typecheck"]
+
+[tasks.test]
+description = "Run TypeScript and Python tests"
+depends = ["//packages/typescript:test", "//packages/python:test"]
+
+[tasks.build]
+description = "Build TypeScript and Python packages"
+depends = ["//packages/typescript:build", "//packages/python:build"]
+
+[tasks."fetch:openapi"]
+description = "Fetch the latest official Toss Securities OpenAPI JSON"
+run = "node scripts/fetch-openapi.mjs"
+
+[tasks."spec:check"]
+description = "Validate the checked-in OpenAPI JSON"
+run = "node scripts/check-openapi.mjs"
+
+[tasks.check]
+description = "Run all scaffold verification checks"
+depends = ["lint", "format", "typecheck", "test", "build", "spec:check"]

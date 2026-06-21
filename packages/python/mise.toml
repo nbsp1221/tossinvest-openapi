@@ -1,0 +1,15 @@
+[tasks.lint]
+description = "Run Python lint"
+run = "uv run ruff check . && uv run ruff format --check ."
+
+[tasks.typecheck]
+description = "Run Python typecheck"
+run = "uv run ty check ."
+
+[tasks.test]
+description = "Run Python tests"
+run = "uv run pytest tests"
+
+[tasks.build]
+description = "Build Python package"
+run = "uv build"
