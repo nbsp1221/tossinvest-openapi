@@ -91,10 +91,9 @@ describe('TokenManager', () => {
       now: () => 1_000_000,
     });
 
-    await expect(Promise.all([manager.getAccessToken(), manager.getAccessToken()])).resolves.toEqual([
-      'token-1',
-      'token-1',
-    ]);
+    await expect(
+      Promise.all([manager.getAccessToken(), manager.getAccessToken()]),
+    ).resolves.toEqual(['token-1', 'token-1']);
     expect(fetchImpl).toHaveBeenCalledTimes(1);
   });
 });

@@ -152,7 +152,10 @@ function extractErrorMessage(body: unknown): string | undefined {
     return body.message;
   }
 
-  if ('error_description' in body && typeof body.error_description === 'string') {
+  if (
+    'error_description' in body &&
+    typeof body.error_description === 'string'
+  ) {
     return body.error_description;
   }
 

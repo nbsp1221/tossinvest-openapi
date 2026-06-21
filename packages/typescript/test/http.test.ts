@@ -1,6 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TossInvestApiError, TossInvestConnectionError } from '../src/errors.js';
+import {
+  TossInvestApiError,
+  TossInvestConnectionError,
+} from '../src/errors.js';
 import { buildUrl, encodeForm, requestJson } from '../src/http.js';
 
 describe('buildUrl', () => {
@@ -83,7 +86,9 @@ describe('requestJson', () => {
   });
 
   it('throws TossInvestConnectionError for fetch failures', async () => {
-    const fetchImpl = vi.fn<typeof fetch>().mockRejectedValue(new TypeError('fetch failed'));
+    const fetchImpl = vi
+      .fn<typeof fetch>()
+      .mockRejectedValue(new TypeError('fetch failed'));
 
     await expect(
       requestJson(fetchImpl, {

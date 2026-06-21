@@ -15,7 +15,10 @@ export class TossInvestApiError extends Error {
   readonly requestId: string | undefined;
 
   constructor(options: TossInvestApiErrorOptions) {
-    super(options.message ?? `Toss Invest API request failed with status ${options.status}`);
+    super(
+      options.message ??
+        `Toss Invest API request failed with status ${options.status}`,
+    );
     this.name = 'TossInvestApiError';
     this.status = options.status;
     this.headers = options.headers;

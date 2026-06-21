@@ -21,7 +21,9 @@ type SuccessResponse<TOperation extends keyof operations> =
     ? TResponse
     : never;
 
-type ResultOf<TRaw> = TRaw extends { result?: infer TResult } ? NonNullable<TResult> : never;
+type ResultOf<TRaw> = TRaw extends { result?: infer TResult }
+  ? NonNullable<TResult>
+  : never;
 
 type QueryOf<TOperation extends keyof operations> =
   operations[TOperation]['parameters'] extends { query?: infer TQuery }
@@ -93,14 +95,22 @@ export type GetStockWarningsParams = PathOf<'getStockWarnings'>;
 export type GetExchangeRateParams = QueryOf<'getExchangeRate'>;
 export type GetKrMarketCalendarParams = QueryOf<'getKrMarketCalendar'>;
 export type GetUsMarketCalendarParams = QueryOf<'getUsMarketCalendar'>;
-export type GetHoldingsParams = QueryOf<'getHoldings'> & { accountSeq: AccountSeq };
+export type GetHoldingsParams = QueryOf<'getHoldings'> & {
+  accountSeq: AccountSeq;
+};
 export type GetOrdersParams = QueryOf<'getOrders'> & { accountSeq: AccountSeq };
-export type CreateOrderParams = RequestBody<'createOrder'> & { accountSeq: AccountSeq };
+export type CreateOrderParams = RequestBody<'createOrder'> & {
+  accountSeq: AccountSeq;
+};
 export type GetOrderParams = PathOf<'getOrder'> & { accountSeq: AccountSeq };
 export type ModifyOrderParams = PathOf<'modifyOrder'> &
   RequestBody<'modifyOrder'> & { accountSeq: AccountSeq };
-export type CancelOrderParams = PathOf<'cancelOrder'> & { accountSeq: AccountSeq };
-export type GetBuyingPowerParams = QueryOf<'getBuyingPower'> & { accountSeq: AccountSeq };
+export type CancelOrderParams = PathOf<'cancelOrder'> & {
+  accountSeq: AccountSeq;
+};
+export type GetBuyingPowerParams = QueryOf<'getBuyingPower'> & {
+  accountSeq: AccountSeq;
+};
 export type GetSellableQuantityParams = QueryOf<'getSellableQuantity'> & {
   accountSeq: AccountSeq;
 };
@@ -140,7 +150,13 @@ export class TossInvestClient {
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetOrderbookData, GetOrderbookRaw>>;
   getOrderbook(params: GetOrderbookParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/orderbook', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/orderbook',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getPrices(params: GetPricesParams): Promise<GetPricesData>;
@@ -149,7 +165,13 @@ export class TossInvestClient {
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetPricesData, GetPricesRaw>>;
   getPrices(params: GetPricesParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/prices', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/prices',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getTrades(params: GetTradesParams): Promise<GetTradesData>;
@@ -158,7 +180,13 @@ export class TossInvestClient {
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetTradesData, GetTradesRaw>>;
   getTrades(params: GetTradesParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/trades', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/trades',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getPriceLimit(params: GetPriceLimitParams): Promise<GetPriceLimitData>;
@@ -166,8 +194,17 @@ export class TossInvestClient {
     params: GetPriceLimitParams,
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetPriceLimitData, GetPriceLimitRaw>>;
-  getPriceLimit(params: GetPriceLimitParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/price-limits', 'GET', params, undefined, options);
+  getPriceLimit(
+    params: GetPriceLimitParams,
+    options?: TossInvestRequestOptions,
+  ) {
+    return this.requestEnvelope(
+      '/api/v1/price-limits',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getCandles(params: GetCandlesParams): Promise<GetCandlesData>;
@@ -176,7 +213,13 @@ export class TossInvestClient {
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetCandlesData, GetCandlesRaw>>;
   getCandles(params: GetCandlesParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/candles', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/candles',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getStocks(params: GetStocksParams): Promise<GetStocksData>;
@@ -185,15 +228,26 @@ export class TossInvestClient {
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetStocksData, GetStocksRaw>>;
   getStocks(params: GetStocksParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/stocks', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/stocks',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
-  getStockWarnings(params: GetStockWarningsParams): Promise<GetStockWarningsData>;
+  getStockWarnings(
+    params: GetStockWarningsParams,
+  ): Promise<GetStockWarningsData>;
   getStockWarnings(
     params: GetStockWarningsParams,
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetStockWarningsData, GetStockWarningsRaw>>;
-  getStockWarnings(params: GetStockWarningsParams, options?: TossInvestRequestOptions) {
+  getStockWarnings(
+    params: GetStockWarningsParams,
+    options?: TossInvestRequestOptions,
+  ) {
     return this.requestEnvelope(
       `/api/v1/stocks/${encodeURIComponent(params.symbol)}/warnings`,
       'GET',
@@ -208,32 +262,61 @@ export class TossInvestClient {
     params: GetExchangeRateParams,
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetExchangeRateData, GetExchangeRateRaw>>;
-  getExchangeRate(params: GetExchangeRateParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/exchange-rate', 'GET', params, undefined, options);
+  getExchangeRate(
+    params: GetExchangeRateParams,
+    options?: TossInvestRequestOptions,
+  ) {
+    return this.requestEnvelope(
+      '/api/v1/exchange-rate',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
-  getKrMarketCalendar(params?: GetKrMarketCalendarParams): Promise<GetKrMarketCalendarData>;
+  getKrMarketCalendar(
+    params?: GetKrMarketCalendarParams,
+  ): Promise<GetKrMarketCalendarData>;
   getKrMarketCalendar(
     params: GetKrMarketCalendarParams | undefined,
     options: WithResponseOptions,
-  ): Promise<TossInvestWithResponse<GetKrMarketCalendarData, GetKrMarketCalendarRaw>>;
+  ): Promise<
+    TossInvestWithResponse<GetKrMarketCalendarData, GetKrMarketCalendarRaw>
+  >;
   getKrMarketCalendar(
     params?: GetKrMarketCalendarParams,
     options?: TossInvestRequestOptions,
   ) {
-    return this.requestEnvelope('/api/v1/market-calendar/KR', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/market-calendar/KR',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
-  getUsMarketCalendar(params?: GetUsMarketCalendarParams): Promise<GetUsMarketCalendarData>;
+  getUsMarketCalendar(
+    params?: GetUsMarketCalendarParams,
+  ): Promise<GetUsMarketCalendarData>;
   getUsMarketCalendar(
     params: GetUsMarketCalendarParams | undefined,
     options: WithResponseOptions,
-  ): Promise<TossInvestWithResponse<GetUsMarketCalendarData, GetUsMarketCalendarRaw>>;
+  ): Promise<
+    TossInvestWithResponse<GetUsMarketCalendarData, GetUsMarketCalendarRaw>
+  >;
   getUsMarketCalendar(
     params?: GetUsMarketCalendarParams,
     options?: TossInvestRequestOptions,
   ) {
-    return this.requestEnvelope('/api/v1/market-calendar/US', 'GET', params, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/market-calendar/US',
+      'GET',
+      params,
+      undefined,
+      options,
+    );
   }
 
   getAccounts(): Promise<GetAccountsData>;
@@ -242,7 +325,13 @@ export class TossInvestClient {
   ): Promise<TossInvestWithResponse<GetAccountsData, GetAccountsRaw>>;
   getAccounts(options?: TossInvestRequestOptions): Promise<GetAccountsData>;
   getAccounts(options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/accounts', 'GET', undefined, undefined, options);
+    return this.requestEnvelope(
+      '/api/v1/accounts',
+      'GET',
+      undefined,
+      undefined,
+      options,
+    );
   }
 
   getHoldings(params: GetHoldingsParams): Promise<GetHoldingsData>;
@@ -252,7 +341,13 @@ export class TossInvestClient {
   ): Promise<TossInvestWithResponse<GetHoldingsData, GetHoldingsRaw>>;
   getHoldings(params: GetHoldingsParams, options?: TossInvestRequestOptions) {
     const { accountSeq, ...query } = params;
-    return this.requestEnvelope('/api/v1/holdings', 'GET', query, accountSeq, options);
+    return this.requestEnvelope(
+      '/api/v1/holdings',
+      'GET',
+      query,
+      accountSeq,
+      options,
+    );
   }
 
   getOrders(params: GetOrdersParams): Promise<GetOrdersData>;
@@ -262,7 +357,13 @@ export class TossInvestClient {
   ): Promise<TossInvestWithResponse<GetOrdersData, GetOrdersRaw>>;
   getOrders(params: GetOrdersParams, options?: TossInvestRequestOptions) {
     const { accountSeq, ...query } = params;
-    return this.requestEnvelope('/api/v1/orders', 'GET', query, accountSeq, options);
+    return this.requestEnvelope(
+      '/api/v1/orders',
+      'GET',
+      query,
+      accountSeq,
+      options,
+    );
   }
 
   createOrder(params: CreateOrderParams): Promise<CreateOrderData>;
@@ -272,7 +373,14 @@ export class TossInvestClient {
   ): Promise<TossInvestWithResponse<CreateOrderData, CreateOrderRaw>>;
   createOrder(params: CreateOrderParams, options?: TossInvestRequestOptions) {
     const { accountSeq, ...body } = params;
-    return this.requestEnvelope('/api/v1/orders', 'POST', undefined, accountSeq, options, body);
+    return this.requestEnvelope(
+      '/api/v1/orders',
+      'POST',
+      undefined,
+      accountSeq,
+      options,
+      body,
+    );
   }
 
   getOrder(params: GetOrderParams): Promise<GetOrderData>;
@@ -328,19 +436,41 @@ export class TossInvestClient {
     params: GetBuyingPowerParams,
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetBuyingPowerData, GetBuyingPowerRaw>>;
-  getBuyingPower(params: GetBuyingPowerParams, options?: TossInvestRequestOptions) {
+  getBuyingPower(
+    params: GetBuyingPowerParams,
+    options?: TossInvestRequestOptions,
+  ) {
     const { accountSeq, ...query } = params;
-    return this.requestEnvelope('/api/v1/buying-power', 'GET', query, accountSeq, options);
+    return this.requestEnvelope(
+      '/api/v1/buying-power',
+      'GET',
+      query,
+      accountSeq,
+      options,
+    );
   }
 
-  getSellableQuantity(params: GetSellableQuantityParams): Promise<GetSellableQuantityData>;
+  getSellableQuantity(
+    params: GetSellableQuantityParams,
+  ): Promise<GetSellableQuantityData>;
   getSellableQuantity(
     params: GetSellableQuantityParams,
     options: WithResponseOptions,
-  ): Promise<TossInvestWithResponse<GetSellableQuantityData, GetSellableQuantityRaw>>;
-  getSellableQuantity(params: GetSellableQuantityParams, options?: TossInvestRequestOptions) {
+  ): Promise<
+    TossInvestWithResponse<GetSellableQuantityData, GetSellableQuantityRaw>
+  >;
+  getSellableQuantity(
+    params: GetSellableQuantityParams,
+    options?: TossInvestRequestOptions,
+  ) {
     const { accountSeq, ...query } = params;
-    return this.requestEnvelope('/api/v1/sellable-quantity', 'GET', query, accountSeq, options);
+    return this.requestEnvelope(
+      '/api/v1/sellable-quantity',
+      'GET',
+      query,
+      accountSeq,
+      options,
+    );
   }
 
   getCommissions(params: GetCommissionsParams): Promise<GetCommissionsData>;
@@ -348,14 +478,25 @@ export class TossInvestClient {
     params: GetCommissionsParams,
     options: WithResponseOptions,
   ): Promise<TossInvestWithResponse<GetCommissionsData, GetCommissionsRaw>>;
-  getCommissions(params: GetCommissionsParams, options?: TossInvestRequestOptions) {
-    return this.requestEnvelope('/api/v1/commissions', 'GET', undefined, params.accountSeq, options);
+  getCommissions(
+    params: GetCommissionsParams,
+    options?: TossInvestRequestOptions,
+  ) {
+    return this.requestEnvelope(
+      '/api/v1/commissions',
+      'GET',
+      undefined,
+      params.accountSeq,
+      options,
+    );
   }
 
   private async requestEnvelope<TData, TRaw extends ApiEnvelope<TData>>(
     path: string,
     method: string,
-    query: Record<string, string | number | boolean | null | undefined> | undefined,
+    query:
+      | Record<string, string | number | boolean | null | undefined>
+      | undefined,
     accountSeq: number | undefined,
     options: TossInvestRequestOptions | undefined,
     body?: unknown,
