@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { TossInvestApiError, TossInvestConnectionError } from '../src/index.js';
+import {
+  TossInvestApiError,
+  TossInvestConnectionError,
+} from '../../src/index.js';
 
 describe('TossInvestApiError', () => {
   it('stores HTTP metadata and parsed error body', () => {

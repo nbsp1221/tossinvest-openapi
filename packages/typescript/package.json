@@ -22,7 +22,9 @@
     "generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false",
     "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false --check",
     "lint": "eslint .",
-    "test": "vitest run",
+    "test": "vitest run test/unit test/integration",
+    "test:integration": "vitest run test/integration",
+    "test:unit": "vitest run test/unit",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

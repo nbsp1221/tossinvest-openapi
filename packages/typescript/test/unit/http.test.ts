@@ -3,8 +3,8 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   TossInvestApiError,
   TossInvestConnectionError,
-} from '../src/errors.js';
-import { buildUrl, encodeForm, requestJson } from '../src/http.js';
+} from '../../src/errors.js';
+import { buildUrl, encodeForm, requestJson } from '../../src/http.js';
 
 describe('buildUrl', () => {
   it('serializes defined query values and omits undefined values', () => {

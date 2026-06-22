@@ -5,7 +5,7 @@ import {
   TossInvestApiError,
   TossInvestConnectionError,
   getPackageInfo,
-} from '../src/index.js';
+} from '../../src/index.js';
 
 describe('public exports', () => {
   it('exports the package name and scaffold version', () => {

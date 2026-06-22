@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TokenManager } from '../src/auth.js';
+import { TokenManager } from '../../src/auth.js';
 
 describe('TokenManager', () => {
   it('lazily issues a token and caches it until expiry', async () => {
