@@ -69,13 +69,14 @@ fit is a restrained financial SDK README:
 
 ### Post-Review Language Decisions
 
-Repository and package README language selectors should use stable language
-codes instead of only naming the other language:
+Repository and package README language selectors should use natural language
+names without a label:
 
-- Korean documents: `언어: [ko](README.md) | [en](README.en.md)`
-- English documents: `Languages: [ko](README.md) | [en](README.en.md)`
+- Korean documents: `한국어 | [English](README.en.md)`
+- English documents: `[한국어](README.md) | English`
 
-This scales better if more languages are added later.
+This follows common README practice: place a compact language switcher near the
+top, keep the current language as plain text, and link to other languages.
 
 The TypeScript package documentation should also follow Korean-first
 documentation because Toss Securities Open API is mainly used in Korea:

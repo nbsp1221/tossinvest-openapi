@@ -12,7 +12,8 @@
 
 The initial implementation plan was updated after review:
 
-- Root README language links use stable language codes: `ko | en`.
+- Root README language links use a compact unlabeled switcher:
+  `한국어 | English`.
 - `packages/typescript/README.md` is Korean-first instead of English-only.
 - `packages/typescript/README.en.md` contains the English TypeScript package
   README.

@@ -6,7 +6,7 @@ Unofficial TypeScript SDK for Toss Securities Open API.
 > This package uses only official documented OpenAPI endpoints. It is not
 > provided, endorsed, or supported by Toss Securities or Viva Republica.
 
-Languages: [ko](README.md) | [en](README.en.md)
+[한국어](README.md) | English
 
 ## Requirements
 

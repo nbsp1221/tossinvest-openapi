@@ -10,7 +10,7 @@ Unofficial client library for Toss Securities Open API.
 > This project uses only endpoints published in the official Toss Securities Open API documentation.
 > It is not provided, endorsed, or supported by Toss Securities or Viva Republica.
 
-Languages: [ko](README.md) | [en](README.en.md)
+[한국어](README.md) | English
 
 ## Status
 
