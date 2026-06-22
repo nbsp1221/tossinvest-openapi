@@ -76,4 +76,4 @@ Pagination stays explicit in the MVP. For paginated endpoints, pass the cursor f
 - Use only the official Toss Securities OpenAPI documentation and JSON schema.
 - Do not use reverse engineered, private, or internal Toss app/web APIs.
 - Do not log secrets, access tokens, account identifiers, or order payloads.
-- Real order APIs will require explicit opt-in and safety documentation before exposure.
+- Treat order APIs as state-changing operations and use explicit application-level confirmation before calling them.
