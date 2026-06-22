@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+    "tossinvest"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "eslint.workingDirectories": [
+    "./packages/typescript"
+  ],
+  "js/ts.tsdk.path": "packages/typescript/node_modules/typescript/lib"
+}
