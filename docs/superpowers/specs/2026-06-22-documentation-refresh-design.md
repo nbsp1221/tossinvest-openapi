@@ -29,6 +29,170 @@ The design is based on:
   `google-api-nodejs-client`, `plaid-node`, `ccxt`,
   `alpaca-trade-api-js`, `modelcontextprotocol/typescript-sdk`, and
   `anthropic-sdk-typescript`.
+- Additional README samples reviewed for monorepo, package-status, and visual
+  structure patterns: `pytorch`, `prisma`, and `aws-sdk-js-v3`.
+
+## README Benchmark Findings
+
+The detailed review covered section order, first-screen content, badges,
+images, tone, warnings, and root/package separation.
+
+| Project | Relevant pattern | Use for this project |
+| --- | --- | --- |
+| `stripe-node` | Title, npm/build/download badges, concise purpose, docs link, requirements, installation, usage, then a visible GitHub warning for secret-key initialization mistakes. | Use early badge row, short server-side SDK positioning, and early credential/order safety callouts. |
+| `plaid-node` | Title with npm badge, table of contents, install, versioning/OpenAPI source, getting started, date conventions, error handling, examples, support. It explicitly warns not to log full error objects because secrets can be included. | Add explicit "do not log secrets or full request metadata" guidance near errors and safety, not only at the bottom. |
+| `openai-node` | Title, package badges, short description, generated-from-OpenAPI note, docs/API reference links, installation, usage, then advanced sections. | State that this SDK is based on the pinned official OpenAPI document before examples. Keep advanced details out of the root README. |
+| `modelcontextprotocol/typescript-sdk` | Important branch/status warning appears before badges. Monorepo package table comes before installation. README links to package docs and examples. | Put project status before detailed usage because this is pre-release and polyglot. Use a package status table in the root README. |
+| `supabase-js` | Large logo, badge row, support policy by runtime, quick start, contributing, testing, docs, provenance, license, support. | Use support/runtime status as a trust signal, but avoid a large image because this project has no established visual brand asset. |
+| `ccxt` | Heavy badge row, quick link bar, multi-language installation, usage examples, and disclaimer link for trading context. | Include a visible safety/disclaimer section because this SDK can place orders. Avoid CCXT-style visual density because this project is smaller. |
+| `alpaca-trade-api-js` | Minimal title, npm/CI badges, API docs link, installation, runtime dependencies, usage, then method catalog by domain. | Include method/domain coverage in the package README, but avoid a full manual method catalog in the root README. |
+| `octokit.js` | Table of contents, feature bullets, usage, constructor/authentication/proxy, generated REST API behavior, and reference screenshots. | Use feature bullets sparingly. No screenshots are needed because this SDK is not visual. |
+| `google-api-nodejs-client` | Right-aligned logo, npm/download/security badges, support/maintenance policy near the top, generated API support note, authentication section. | Put support status and official API-source boundaries early. |
+| `aws-sdk-js-v3` | Badges, high-level positioning, developer-guide/API-reference links, table of contents, getting started, architecture concepts, support policy, known issues. | Link users to official Toss docs and keep architecture/explanation separate from first-use instructions. |
+| `prisma` | Branded image, centered link bar, "What is" section, quickstart, architecture explanation, community, security, support. | Use a short "Why this SDK exists" section, but avoid a marketing-style hero because this is a small financial SDK. |
+| `pytorch` | Logo, concise capability bullets, generated table of contents, deep conceptual explanation, install, getting started, resources. | Use concise capability bullets; avoid deep conceptual sections in the root README. |
+
+The benchmark suggests this project should not copy any one README. The best
+fit is a restrained financial SDK README:
+
+- first screen: identity, unofficial status, package/status badges, language
+  link, and a package status table;
+- early trust signals: official OpenAPI source, supported runtime, license,
+  CI/check status, and pre-release status;
+- early safety signals: server-side credential handling, no private Toss APIs,
+  order APIs are state-changing;
+- short quick start in the root README;
+- detailed usage, errors, raw response, timeouts, and order examples in the
+  TypeScript package README.
+
+## Detail Decisions
+
+### Section Order
+
+The root README should optimize the first screen for trust and routing:
+
+1. title and one-line Korean description;
+2. badges;
+3. official/unofficial notice;
+4. language switch;
+5. package status table;
+6. short value proposition;
+7. TypeScript quick start;
+8. safety notes;
+9. package/documentation links;
+10. development commands;
+11. license.
+
+The TypeScript package README should optimize for task completion:
+
+1. package title and unofficial notice;
+2. badges only if package-specific badges are valid;
+3. requirements;
+4. installation;
+5. quick start;
+6. credentials/authentication;
+7. common task examples;
+8. response model;
+9. errors and logging safety;
+10. timeouts;
+11. orders;
+12. API coverage;
+13. support and license.
+
+### Tone
+
+Use a precise, operational tone. This is a financial API SDK, so the language
+should be closer to Stripe, Plaid, and AWS than to a marketing-heavy project
+README.
+
+Rules:
+
+- Prefer short declarative sentences.
+- Avoid exaggerated claims such as "production-ready", "battle-tested", or
+  "safe" before release history supports them.
+- Say what the SDK does and what it does not do.
+- Use Korean naturally in `README.md`; do not mirror English sentence order.
+- Use English in `README.en.md` for discoverability and package consumers.
+
+### Badges
+
+Use badges as trust signals, not decoration.
+
+Recommended root badge set:
+
+- GitHub Actions CI status badge for `ci.yml`.
+- npm version badge for `tossinvest-openapi` once the package is published.
+- License badge.
+- OpenAPI version badge using the pinned Toss Securities OpenAPI version
+  `1.1.1`.
+
+Before npm publication, omit the npm version badge rather than showing a broken
+or misleading badge.
+
+Avoid:
+
+- download count badges before meaningful adoption;
+- coverage badges unless coverage is actually measured and enforced;
+- social/community badges;
+- excessive badge rows like large multi-language projects use.
+
+### Images and Logos
+
+Do not add a logo, hero image, or screenshot in this iteration.
+
+Reasons:
+
+- The project does not have an official visual identity.
+- Using Toss Securities branding could imply endorsement.
+- SDK usage is code-oriented, so screenshots would not clarify the product.
+
+Small text badges and tables are enough for the first release documentation.
+
+### Callouts and Warnings
+
+Use GitHub callout blocks sparingly:
+
+- `[!NOTE]` for unofficial status or pre-release status.
+- `[!WARNING]` for order APIs and secret/logging safety.
+
+Warnings should appear near the relevant usage section, not only in a final
+"Safety Policy" section. For example:
+
+- credential warning near authentication;
+- do-not-log warning near errors;
+- state-changing warning near order examples.
+
+### Code Examples
+
+Root README examples should be short enough to scan without scrolling through a
+manual:
+
+- install;
+- create client;
+- fetch accounts;
+- fetch prices.
+
+Package README examples can be longer and should cover:
+
+- holdings;
+- open orders;
+- buying power;
+- raw response access;
+- error handling;
+- a clearly marked order example.
+
+Examples must use placeholders or environment variables, never real credentials,
+real account identifiers, real order IDs, or live QA output.
+
+### Table of Contents
+
+Do not add a table of contents to the root README unless it grows beyond the
+planned structure. The root README should stay short.
+
+Add no manual table of contents to the TypeScript package README initially.
+GitHub's outline is sufficient at the expected size. If the package README grows
+substantially later, use a collapsible table of contents similar to the MCP
+TypeScript SDK.
 
 ## Current Problems
 
@@ -81,35 +245,40 @@ Use four documentation entry points:
 `README.md` should use this Korean-first structure:
 
 1. Project title and one-sentence description.
-2. Official/unofficial notice.
-3. Language link to `README.en.md`.
-4. Status table:
+2. Minimal trust-signal badges:
+   - CI status.
+   - license.
+   - pinned OpenAPI version.
+   - npm version only after publication.
+3. Official/unofficial notice.
+4. Language link to `README.en.md`.
+5. Status table:
    - TypeScript: implemented, pre-release.
    - Python: planned, scaffolded, not released.
    - OpenAPI contract: pinned official Toss Securities OpenAPI document.
-5. Why this SDK exists:
+6. Why this SDK exists:
    - typed access to Toss Securities Open API.
    - automatic OAuth2 client credentials handling.
    - raw response access when needed.
    - explicit order API safety.
-6. Quick Start for TypeScript:
+7. Quick Start for TypeScript:
    - install command.
    - environment variable names.
    - account and price example.
-7. Important usage notes:
+8. Important usage notes:
    - server-side secrets only.
    - one client instance per credential set.
    - order methods are state-changing.
    - no private or reverse-engineered Toss APIs.
-8. Development:
-   - `mise install`
-   - `mise run install`
-   - `mise run check`
 9. Links:
    - TypeScript package README.
    - Python package README.
    - official Toss Securities Open API docs.
    - license.
+10. Development:
+   - `mise install`
+   - `mise run install`
+   - `mise run check`
 
 The root README should stay concise. Detailed API examples belong in package
 READMEs.
@@ -156,6 +325,7 @@ READMEs.
 9. Errors:
    - `TossInvestApiError`.
    - `TossInvestConnectionError`.
+   - do not log secrets or full request metadata.
 10. Timeouts:
     - default 30 seconds.
     - client-level and per-call override.
@@ -206,6 +376,8 @@ READMEs.
 - `README.md` is Korean-first and clearly positions the repository as a
   polyglot unofficial SDK for Toss Securities Open API.
 - `README.en.md` exists and reflects the same root-level facts in English.
+- Badges are limited to meaningful trust signals and do not imply unsupported
+  maturity or adoption.
 - `packages/typescript/README.md` gives TypeScript users enough information to
   install, authenticate, make common calls, handle errors, inspect raw
   responses, and understand order safety.
