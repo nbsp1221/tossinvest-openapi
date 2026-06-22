@@ -201,6 +201,6 @@ Python is maintained separately in the same polyglot repository.
 
 ## Links
 
-- [Repository README](../../README.md)
+- [Repository README](https://github.com/nbsp1221/tossinvest-openapi#readme)
 - [Official Toss Securities Open API docs](https://developers.tossinvest.com/docs)
-- [LICENSE](../../LICENSE)
+- [LICENSE](https://github.com/nbsp1221/tossinvest-openapi/blob/main/LICENSE)

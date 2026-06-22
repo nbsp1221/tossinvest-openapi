@@ -19,6 +19,8 @@ The initial implementation plan was updated after review:
   README.
 - `packages/typescript/package.json` includes `README.en.md` in `files` so the
   English package README is included in package contents.
+- TypeScript package README links that point outside the package directory use
+  absolute GitHub URLs so they work on npm package pages.
 
 ## Global Constraints
 

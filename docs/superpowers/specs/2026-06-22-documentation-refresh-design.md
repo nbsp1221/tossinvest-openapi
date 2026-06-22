@@ -88,6 +88,10 @@ documentation because Toss Securities Open API is mainly used in Korea:
 - `packages/typescript/package.json` should include `README.en.md` in `files`
   so the English package README is available in the published package.
 
+The TypeScript package README files are also rendered on npm. Links that point
+outside the package directory should use stable absolute GitHub URLs instead of
+monorepo-relative paths such as `../../README.md` or `../../LICENSE`.
+
 ### Section Order
 
 The root README should optimize the first screen for trust and routing:
