@@ -14,11 +14,11 @@
 
 ## 상태
 
-| 패키지 | 상태 | 설명 |
-| --- | --- | --- |
-| TypeScript | 구현됨, pre-release | 공식 OpenAPI 1.1.1의 business operation을 flat method로 제공합니다. |
-| Python | 계획됨, scaffolded | 폴리글랏 구조를 유지하기 위한 패키지이며 아직 사용 가능한 SDK는 아닙니다. |
-| OpenAPI contract | pinned | `spec/upstream/openapi.json`을 기준으로 타입을 생성합니다. |
+| 패키지           | 상태                | 설명                                                                      |
+| ---------------- | ------------------- | ------------------------------------------------------------------------- |
+| TypeScript       | 구현됨, pre-release | 공식 OpenAPI 1.1.1의 business operation을 flat method로 제공합니다.       |
+| Python           | 계획됨, scaffolded  | 폴리글랏 구조를 유지하기 위한 패키지이며 아직 사용 가능한 SDK는 아닙니다. |
+| OpenAPI contract | pinned              | `spec/upstream/openapi.json`을 기준으로 타입을 생성합니다.                |
 
 ## 왜 이 SDK를 쓰나요?
 
@@ -34,7 +34,7 @@ pnpm add tossinvest-openapi
 ```
 
 ```ts
-import { TossInvestClient } from 'tossinvest-openapi';
+import { TossInvestClient } from "tossinvest-openapi";
 
 const client = new TossInvestClient({
   clientId: process.env.TOSS_INVEST_CLIENT_ID!,
@@ -42,7 +42,7 @@ const client = new TossInvestClient({
 });
 
 const accounts = await client.getAccounts();
-const prices = await client.getPrices({ symbols: '005930,AAPL' });
+const prices = await client.getPrices({ symbols: "005930,AAPL" });
 
 console.log({ accounts, prices });
 ```
@@ -74,3 +74,11 @@ mise install
 mise run install
 mise run check
 ```
+
+## 릴리즈
+
+TypeScript 패키지는 npm Trusted Publishing을 기준으로 준비되어 있습니다. npmjs.com의 package settings에서 GitHub Actions trusted publisher를 추가할 때 workflow filename은 `release-typescript.yml`로 설정합니다.
+
+TypeScript 배포는 GitHub Release를 publish할 때 실행되며, tag는 `typescript-v0.1.0`처럼 `typescript-v` prefix를 사용합니다. npm Trusted Publishing은 GitHub-hosted runner와 npm CLI 11.5.1 이상이 필요하므로 release workflow에서 npm 11.17.0을 사용합니다.
+
+npm Trusted Publisher 설정은 npm package settings에서 관리됩니다. 패키지가 아직 npm registry에 존재하지 않으면 package settings가 없을 수 있으므로, 첫 공개 버전 생성에는 npm 계정의 2FA가 적용되는 직접 publish 절차가 먼저 필요할 수 있습니다.

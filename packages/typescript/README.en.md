@@ -11,6 +11,7 @@ Unofficial TypeScript SDK for Toss Securities Open API.
 ## Requirements
 
 - Node.js 22 or newer
+- ESM-only runtime
 - Toss Securities Open API client credentials
 
 ## Installation

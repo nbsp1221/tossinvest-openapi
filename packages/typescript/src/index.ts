@@ -1,19 +1,12 @@
-export const VERSION = '0.0.0';
-
-export interface PackageInfo {
-  name: 'tossinvest-openapi';
-  version: typeof VERSION;
-}
-
-export function getPackageInfo(): PackageInfo {
-  return {
-    name: 'tossinvest-openapi',
-    version: VERSION,
-  };
-}
-
 export { TossInvestClient } from './client.js';
 export { TossInvestApiError, TossInvestConnectionError } from './errors.js';
+export {
+  DEFAULT_USER_AGENT,
+  getPackageInfo,
+  PACKAGE_NAME,
+  VERSION,
+} from './version.js';
+export type { PackageInfo } from './version.js';
 export type {
   CancelOrderParams,
   CreateOrderParams,

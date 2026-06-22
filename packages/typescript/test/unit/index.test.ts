@@ -8,11 +8,11 @@ import {
 } from '../../src/index.js';
 
 describe('public exports', () => {
-  it('exports the package name and scaffold version', () => {
-    expect(VERSION).toBe('0.0.0');
+  it('exports the package name and package version', () => {
+    expect(VERSION).toMatch(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/);
     expect(getPackageInfo()).toEqual({
       name: 'tossinvest-openapi',
-      version: '0.0.0',
+      version: VERSION,
     });
   });
 
