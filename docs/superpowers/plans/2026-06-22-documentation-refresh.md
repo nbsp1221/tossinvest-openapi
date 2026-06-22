@@ -8,6 +8,17 @@
 
 **Tech Stack:** Markdown, GitHub-flavored callouts, relative repository links, existing `mise run check` validation.
 
+## Post-Review Amendments
+
+The initial implementation plan was updated after review:
+
+- Root README language links use stable language codes: `ko | en`.
+- `packages/typescript/README.md` is Korean-first instead of English-only.
+- `packages/typescript/README.en.md` contains the English TypeScript package
+  README.
+- `packages/typescript/package.json` includes `README.en.md` in `files` so the
+  English package README is included in package contents.
+
 ## Global Constraints
 
 - Work on the current branch without creating a git worktree.
@@ -15,7 +26,9 @@
 - Do not add real credentials, access tokens, account identifiers, order IDs, live QA output, or user portfolio data.
 - `README.md` is Korean-first.
 - `README.en.md` mirrors root-level facts in English.
-- `packages/typescript/README.md` is the npm package usage guide.
+- `packages/typescript/README.md` is the Korean-first npm package usage guide.
+- `packages/typescript/README.en.md` is the English TypeScript package usage
+  guide.
 - `packages/python/README.md` accurately states that Python is scaffolded/planned but not released as a working SDK.
 - Use a precise, operational tone; avoid "production-ready", "battle-tested", "safe", "official", or endorsement-implying language.
 - Badge usage is limited to meaningful trust signals: CI, license, pinned OpenAPI version, and npm version only after package publication.
@@ -37,8 +50,15 @@
   - Mirrors the root README facts and links back to `README.md`.
 
 - Modify `packages/typescript/README.md`
-  - npm package user guide.
+  - Korean-first npm package user guide.
   - Covers requirements, installation, credentials/authentication, common calls, responses, errors/logging safety, timeouts, orders, scope, and support.
+
+- Create `packages/typescript/README.en.md`
+  - English TypeScript package user guide.
+  - Mirrors package-level usage guidance for non-Korean readers.
+
+- Modify `packages/typescript/package.json`
+  - Include `README.en.md` in package `files`.
 
 - Modify `packages/python/README.md`
   - Python package status guide.

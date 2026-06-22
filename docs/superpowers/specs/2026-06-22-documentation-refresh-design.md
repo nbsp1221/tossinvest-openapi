@@ -67,6 +67,26 @@ fit is a restrained financial SDK README:
 
 ## Detail Decisions
 
+### Post-Review Language Decisions
+
+Repository and package README language selectors should use stable language
+codes instead of only naming the other language:
+
+- Korean documents: `언어: [ko](README.md) | [en](README.en.md)`
+- English documents: `Languages: [ko](README.md) | [en](README.en.md)`
+
+This scales better if more languages are added later.
+
+The TypeScript package documentation should also follow Korean-first
+documentation because Toss Securities Open API is mainly used in Korea:
+
+- `packages/typescript/README.md`: Korean package README shown by default on
+  GitHub and npm.
+- `packages/typescript/README.en.md`: English package README for non-Korean
+  users.
+- `packages/typescript/package.json` should include `README.en.md` in `files`
+  so the English package README is available in the published package.
+
 ### Section Order
 
 The root README should optimize the first screen for trust and routing:
@@ -296,48 +316,49 @@ READMEs.
 
 `packages/typescript/README.md` should use this structure:
 
-1. Package title and short purpose.
+1. Package title and Korean short purpose.
 2. Official/unofficial notice.
-3. Requirements:
+3. `ko | en` language selector.
+4. Requirements:
    - Node.js 22 or newer.
    - Toss Securities Open API client credentials.
-4. Installation:
+5. Installation:
    - `pnpm add tossinvest-openapi`
    - mention npm/yarn equivalents only if useful and concise.
-5. Quick Start:
+6. Quick Start:
    - construct `TossInvestClient`.
    - fetch accounts.
    - fetch holdings.
    - fetch prices.
-6. Credentials and authentication:
+7. Credentials and authentication:
    - `clientId` and `clientSecret`.
    - OAuth2 Client Credentials Grant handled internally.
    - lazy token issuance.
    - token reissue behavior and one-client-instance guidance.
-7. Common examples:
+8. Common examples:
    - market data.
    - account holdings.
    - open orders.
    - buying power or order-related precheck.
-8. Responses:
+9. Responses:
    - default unwrapped `result`.
    - `{ withResponse: true }` for `data`, `raw`, and `response`.
-9. Errors:
+10. Errors:
    - `TossInvestApiError`.
    - `TossInvestConnectionError`.
    - do not log secrets or full request metadata.
-10. Timeouts:
+11. Timeouts:
     - default 30 seconds.
     - client-level and per-call override.
-11. Orders:
+12. Orders:
     - state-changing warning.
     - minimal example.
     - recommend user/application confirmation before calling order methods.
-12. Scope and API coverage:
+13. Scope and API coverage:
     - flat methods for every business operation in the pinned OpenAPI 1.1.1
       document.
     - official documented APIs only.
-13. License and support links.
+14. License and support links.
 
 ## Python Package README Structure
 
