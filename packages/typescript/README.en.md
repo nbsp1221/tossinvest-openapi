@@ -1,25 +1,25 @@
 # tossinvest-openapi
 
-토스증권 Open API를 위한 비공식 TypeScript SDK입니다.
+Unofficial TypeScript SDK for Toss Securities Open API.
 
 > [!NOTE]
-> 이 패키지는 공식 문서에 공개된 OpenAPI 엔드포인트만 사용합니다.
-> 토스증권 또는 비바리퍼블리카가 공식 제공하거나 보증하는 라이브러리가 아닙니다.
+> This package uses only official documented OpenAPI endpoints. It is not
+> provided, endorsed, or supported by Toss Securities or Viva Republica.
 
-한국어 | [English](README.en.md)
+[한국어](README.md) | English
 
-## 요구사항
+## Requirements
 
-- Node.js 22 이상
+- Node.js 22 or newer
 - Toss Securities Open API client credentials
 
-## 설치
+## Installation
 
 ```sh
 pnpm add tossinvest-openapi
 ```
 
-## 빠른 시작
+## Quick Start
 
 ```ts
 import { TossInvestClient } from 'tossinvest-openapi';
@@ -42,9 +42,9 @@ const prices = await client.getPrices({ symbols: '005930,AAPL' });
 console.log({ holdings, prices });
 ```
 
-## Credentials와 인증
+## Credentials and Authentication
 
-토스증권 Open API에서 발급받은 `clientId`와 `clientSecret`으로 `TossInvestClient`를 생성합니다.
+Create `TossInvestClient` with the `clientId` and `clientSecret` issued by Toss Securities Open API.
 
 ```ts
 const client = new TossInvestClient({
@@ -53,17 +53,17 @@ const client = new TossInvestClient({
 });
 ```
 
-SDK는 OAuth2 Client Credentials Grant를 내부에서 처리합니다. 첫 인증 API 호출 시 access token을 lazy하게 발급받고, 메모리에 캐시하며, `expires_in` 시간이 지나면 새 token을 발급받습니다.
+The SDK uses OAuth2 Client Credentials Grant internally. It lazily requests an access token on the first authenticated API call, caches it in memory, and reissues a token after the `expires_in` window.
 
-Toss Securities는 refresh token을 제공하지 않습니다. 같은 client credentials로 token을 재발급하면 이전 token이 무효화되므로, 한 프로세스 안에서는 credential set마다 하나의 `TossInvestClient` 인스턴스를 재사용하는 것을 권장합니다.
+Toss Securities does not provide refresh tokens. Token reissuance invalidates the previous token for the same client credentials, so prefer one `TossInvestClient` instance per credential set in a process.
 
 > [!WARNING]
-> `clientSecret`은 서버 사이드에서만 보관하세요. 브라우저 번들, 모바일 앱,
-> 공개 저장소, 로그, crash report에 노출하면 안 됩니다.
+> Keep `clientSecret` on the server side. Do not expose it in browser bundles,
+> mobile apps, public repositories, logs, or crash reports.
 
-## 주요 호출
+## Common Calls
 
-### 시세 데이터
+### Market Data
 
 ```ts
 const orderbook = await client.getOrderbook({ symbol: '005930' });
@@ -71,7 +71,7 @@ const prices = await client.getPrices({ symbols: '005930,AAPL' });
 const priceLimit = await client.getPriceLimit({ symbol: '005930' });
 ```
 
-### 계좌 데이터
+### Account Data
 
 ```ts
 const accounts = await client.getAccounts();
@@ -85,7 +85,7 @@ const holdings = await client.getHoldings({ accountSeq });
 const openOrders = await client.getOrders({ accountSeq, status: 'OPEN' });
 ```
 
-### 주문 전 확인
+### Order Prechecks
 
 ```ts
 const buyingPower = await client.getBuyingPower({
@@ -106,15 +106,15 @@ const commissions = await client.getCommissions({
 });
 ```
 
-## 응답
+## Responses
 
-Business API 메서드는 기본적으로 `result` payload를 unwrap해서 반환합니다.
+Business API methods return the unwrapped `result` payload by default.
 
 ```ts
 const accounts = await client.getAccounts();
 ```
 
-원본 응답 envelope 또는 HTTP metadata가 필요하면 `{ withResponse: true }`를 사용하세요.
+Use `{ withResponse: true }` when you need the original response envelope or HTTP metadata.
 
 ```ts
 const result = await client.getAccounts({ withResponse: true });
@@ -125,9 +125,9 @@ console.log(result.response.status);
 console.log(result.response.requestId);
 ```
 
-## 에러
+## Errors
 
-API 실패는 `TossInvestApiError`를 throw합니다. 네트워크 레벨 실패는 `TossInvestConnectionError`를 throw합니다.
+API failures throw `TossInvestApiError`. Network-level failures throw `TossInvestConnectionError`.
 
 ```ts
 import {
@@ -149,12 +149,12 @@ try {
 ```
 
 > [!WARNING]
-> 에러 객체나 HTTP request metadata 전체를 그대로 로그에 남기지 마세요.
-> secret, access token, 계좌 식별자, 주문 payload가 포함될 수 있습니다.
+> Do not log full error objects or full HTTP request metadata. They may include
+> secrets, access tokens, account identifiers, or order payloads.
 
-## Timeout
+## Timeouts
 
-요청은 기본적으로 30초 후 timeout됩니다. client 단위 또는 개별 호출 단위로 timeout을 바꿀 수 있습니다.
+Requests time out after 30 seconds by default. You can override the timeout globally or per call.
 
 ```ts
 const client = new TossInvestClient({
@@ -166,13 +166,13 @@ const client = new TossInvestClient({
 await client.getAccounts({ timeoutMs: 5_000 });
 ```
 
-## 주문
+## Orders
 
-주문 API는 공식 Toss Securities OpenAPI 문서에 포함되어 있어 SDK에서 노출합니다. 주문 호출은 계좌 상태를 바꿀 수 있는 state-changing operation으로 다루세요.
+Order APIs are exposed because they are part of the official Toss Securities OpenAPI document. Treat order calls as state-changing operations.
 
 > [!WARNING]
-> `createOrder`, `modifyOrder`, `cancelOrder`는 계좌 상태를 바꿀 수 있습니다.
-> 호출 전에 사용자 또는 애플리케이션 레벨의 명시적 확인 절차를 두세요.
+> `createOrder`, `modifyOrder`, and `cancelOrder` can change account state.
+> Add explicit user or application-level confirmation before calling them.
 
 ```ts
 const order = await client.createOrder({
@@ -193,13 +193,13 @@ const detail = await client.getOrder({
 });
 ```
 
-## 범위
+## Scope
 
-TypeScript SDK는 pinned Toss Securities OpenAPI 1.1.1 문서의 모든 business operation을 flat method로 제공합니다. 계좌, 시세, 주문, 주문 정보 API를 포함합니다.
+The TypeScript SDK exposes flat methods for every business operation in the pinned Toss Securities OpenAPI 1.1.1 document, including account, market data, order, and order-info APIs.
 
-Python은 같은 polyglot repository 안에서 별도 패키지로 관리됩니다.
+Python is maintained separately in the same polyglot repository.
 
-## 링크
+## Links
 
 - [Repository README](https://github.com/nbsp1221/tossinvest-openapi#readme)
 - [Official Toss Securities Open API docs](https://developers.tossinvest.com/docs)
