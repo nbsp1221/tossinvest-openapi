@@ -1,5 +1,37 @@
-# tossinvest-openapi
+# tossinvest-openapi for Python
 
-Unofficial Python package for Toss Securities Open API.
+Python support is planned as a first-class package in this polyglot repository, but the Python SDK is not implemented or released yet.
 
-This package is part of the `tossinvest-openapi` polyglot monorepo and uses only official documented OpenAPI endpoints.
+The current package exists to keep the Python workspace, tooling, and future package boundary in place.
+
+## Current Status
+
+| Area | Status |
+| --- | --- |
+| Package scaffold | Available |
+| Lint and format | Ruff |
+| Type checking | ty |
+| Tests | pytest |
+| Runtime SDK | Not implemented |
+| Release package | Not published |
+
+## Development
+
+From this package directory:
+
+```sh
+mise run check
+```
+
+From the repository root:
+
+```sh
+mise run check
+```
+
+## Working SDK
+
+Use the TypeScript package for current SDK functionality:
+
+- [Repository README](../../README.md)
+- [TypeScript package](../typescript/README.md)
