@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import inspect
 from collections.abc import Callable
-from typing import NamedTuple
+from typing import Literal, NamedTuple, get_type_hints
 
 from helpers import FakeResponse, FakeSession, oauth_response
 from tossinvest_openapi import TossInvestClient
@@ -98,6 +99,14 @@ def test_issue_oauth2_token_exposes_auth_operation() -> None:
     )
 
     assert client.issue_oauth2_token()["access_token"] == "manual-token"
+
+
+def test_get_orders_requires_status_parameter() -> None:
+    signature = inspect.signature(TossInvestClient.get_orders)
+    type_hints = get_type_hints(TossInvestClient.get_orders)
+
+    assert signature.parameters["status"].default is inspect.Parameter.empty
+    assert type_hints["status"] == Literal["OPEN", "CLOSED"]
 
 
 class ExpectedRequest(NamedTuple):

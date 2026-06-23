@@ -280,7 +280,7 @@ class TossInvestClient:
         self,
         *,
         account_seq: int,
-        status: str | None = None,
+        status: Literal["OPEN", "CLOSED"],
         symbol: str | None = None,
         from_date: str | None = None,
         to_date: str | None = None,
