@@ -17,12 +17,12 @@
 | 패키지           | 상태                | 설명                                                                      |
 | ---------------- | ------------------- | ------------------------------------------------------------------------- |
 | TypeScript       | 구현됨, pre-release | 공식 OpenAPI 1.1.1의 business operation을 flat method로 제공합니다.       |
-| Python           | 계획됨, scaffolded  | 폴리글랏 구조를 유지하기 위한 패키지이며 아직 사용 가능한 SDK는 아닙니다. |
+| Python           | 구현됨, pre-release | 공식 OpenAPI 1.1.1의 business operation을 sync client로 제공합니다.       |
 | OpenAPI contract | pinned              | `spec/upstream/openapi.json`을 기준으로 타입을 생성합니다.                |
 
 ## 왜 이 SDK를 쓰나요?
 
-- 공식 Toss Securities Open API 스키마에서 파생된 TypeScript 타입을 사용합니다.
+- 공식 Toss Securities Open API 스키마에서 파생된 TypeScript/Python 타입을 사용합니다.
 - OAuth2 Client Credentials 인증을 SDK가 처리합니다.
 - 기본 응답은 `result`를 unwrap하고, 필요하면 원본 응답도 확인할 수 있습니다.
 - 주문 API는 명시적으로 노출하되 state-changing operation으로 다룹니다.

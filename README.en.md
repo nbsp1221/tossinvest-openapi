@@ -17,12 +17,12 @@ Unofficial client library for Toss Securities Open API.
 | Package          | Status                   | Description                                                                               |
 | ---------------- | ------------------------ | ----------------------------------------------------------------------------------------- |
 | TypeScript       | Implemented, pre-release | Provides flat methods for the business operations in the official OpenAPI 1.1.1 document. |
-| Python           | Planned, scaffolded      | Kept as part of the polyglot workspace, but not yet a usable SDK.                         |
+| Python           | Implemented, pre-release | Provides a sync client for the business operations in the official OpenAPI 1.1.1 document. |
 | OpenAPI contract | Pinned                   | Types are generated from `spec/upstream/openapi.json`.                                    |
 
 ## Why Use This SDK?
 
-- Uses TypeScript types derived from the official Toss Securities Open API schema.
+- Uses TypeScript and Python types derived from the official Toss Securities Open API schema.
 - Handles OAuth2 Client Credentials authentication inside the SDK.
 - Returns unwrapped `result` payloads by default while allowing access to raw responses.
 - Exposes order APIs explicitly as state-changing operations.
