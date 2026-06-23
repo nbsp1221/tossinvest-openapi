@@ -11,10 +11,10 @@ export default tseslint.config(
   },
   ...tseslint.configs.recommendedTypeChecked.map((config) => ({
     ...config,
-    files: ['src/**/*.ts', 'test/**/*.ts'],
+    files: ['examples/**/*.ts', 'src/**/*.ts', 'test/**/*.ts'],
   })),
   {
-    files: ['src/**/*.ts', 'test/**/*.ts'],
+    files: ['examples/**/*.ts', 'src/**/*.ts', 'test/**/*.ts'],
     languageOptions: {
       parserOptions: {
         projectService: true,

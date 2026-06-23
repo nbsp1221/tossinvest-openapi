@@ -15,5 +15,6 @@ const prices = await client.getPrices({ symbols });
 
 console.log({
   symbols,
-  prices,
+  priceCount: prices.length,
+  returnedSymbols: prices.map((price) => price.symbol),
 });

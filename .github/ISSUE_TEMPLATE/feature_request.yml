@@ -4,6 +4,10 @@ title: "feat: "
 labels:
   - enhancement
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, access tokens, account numbers, holdings, order IDs, or other sensitive financial data.
   - type: textarea
     id: problem
     attributes:

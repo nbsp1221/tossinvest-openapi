@@ -38,7 +38,10 @@ if (accountSeq === undefined) {
 const holdings = await client.getHoldings({ accountSeq });
 const prices = await client.getPrices({ symbols: '005930,AAPL' });
 
-console.log({ holdings, prices });
+console.log({
+  holdingCount: holdings.items.length,
+  priceCount: prices.length,
+});
 ```
 
 ## 요구사항
@@ -95,20 +98,10 @@ const openOrders = await client.getOrders({ accountSeq, status: 'OPEN' });
 ```ts
 const buyingPower = await client.getBuyingPower({
   accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  price: '70000',
+  currency: 'KRW',
 });
 
-const commissions = await client.getCommissions({
-  accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  quantity: '1',
-  price: '70000',
-});
+const commissions = await client.getCommissions({ accountSeq });
 ```
 
 ## 응답
@@ -125,7 +118,6 @@ const accounts = await client.getAccounts();
 const result = await client.getAccounts({ withResponse: true });
 
 console.log(result.data);
-console.log(result.raw);
 console.log(result.response.status);
 console.log(result.response.requestId);
 ```

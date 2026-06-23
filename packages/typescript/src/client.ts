@@ -21,9 +21,7 @@ type SuccessResponse<TOperation extends keyof operations> =
     ? TResponse
     : never;
 
-type ResultOf<TRaw> = TRaw extends { result?: infer TResult }
-  ? NonNullable<TResult>
-  : never;
+type ResultOf<TRaw extends { result?: unknown }> = NonNullable<TRaw['result']>;
 
 type QueryOf<TOperation extends keyof operations> =
   operations[TOperation]['parameters'] extends { query?: infer TQuery }

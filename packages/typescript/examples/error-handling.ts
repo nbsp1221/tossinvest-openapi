@@ -16,8 +16,11 @@ if (clientId === undefined || clientSecret === undefined) {
 const client = new TossInvestClient({ clientId, clientSecret });
 
 try {
-  const result = await client.getPrices({ symbols: '005930' });
-  console.log(result);
+  const prices = await client.getPrices({ symbols: '005930' });
+  console.log({
+    priceCount: prices.length,
+    returnedSymbols: prices.map((price) => price.symbol),
+  });
 } catch (error) {
   if (error instanceof TossInvestApiError) {
     console.error({

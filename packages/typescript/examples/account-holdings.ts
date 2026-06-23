@@ -22,6 +22,6 @@ const holdings = await client.getHoldings({ accountSeq });
 
 console.log({
   accountSeq,
-  holdingCount: holdings.length,
-  holdings,
+  holdingCount: holdings.items.length,
+  symbols: holdings.items.map((item) => item.symbol),
 });

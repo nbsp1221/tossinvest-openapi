@@ -34,7 +34,10 @@ const client = new TossInvestClient({
 const accounts = await client.getAccounts();
 const prices = await client.getPrices({ symbols: "005930,AAPL" });
 
-console.log({ accounts, prices });
+console.log({
+  accountCount: accounts.length,
+  priceCount: prices.length,
+});
 ```
 
 > [!WARNING]
