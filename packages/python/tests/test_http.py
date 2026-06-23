@@ -40,7 +40,9 @@ class FakeSession:
         self.response = response
         self.calls: list[dict[str, Any]] = []
 
-    def request(self, **kwargs: Any) -> FakeResponse:
+    def request(self, method: str, url: str, **kwargs: Any) -> FakeResponse:
+        kwargs["method"] = method
+        kwargs["url"] = url
         self.calls.append(kwargs)
         if isinstance(self.response, BaseException):
             raise self.response

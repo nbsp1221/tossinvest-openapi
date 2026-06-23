@@ -29,7 +29,7 @@ class HttpSuccess(NamedTuple):
 
 
 class SessionLike(Protocol):
-    def request(self, **kwargs: Any) -> Any: ...
+    def request(self, method: str, url: str, **kwargs: Any) -> Any: ...
 
 
 def build_url(
@@ -50,8 +50,8 @@ def build_url(
 def request_json(session: SessionLike, request: HttpRequest) -> HttpSuccess:
     try:
         response = session.request(
-            method=request.method,
-            url=request.url,
+            request.method,
+            request.url,
             headers=dict(request.headers),
             timeout=request.timeout,
             json=request.json,
