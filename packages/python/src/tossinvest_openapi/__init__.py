@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from .client import TossInvestClient
 from .errors import (
     TossInvestAPIError,
     TossInvestAuthenticationError,
@@ -33,6 +34,7 @@ __all__ = [
     "TossInvestAPIError",
     "TossInvestAuthenticationError",
     "TossInvestBadRequestError",
+    "TossInvestClient",
     "TossInvestConnectionError",
     "TossInvestError",
     "TossInvestNotFoundError",

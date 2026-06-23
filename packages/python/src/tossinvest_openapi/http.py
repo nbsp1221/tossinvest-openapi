@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, NamedTuple, Protocol
+from typing import Any, NamedTuple
 from urllib.parse import urlencode, urljoin
 
 import requests
@@ -28,8 +28,7 @@ class HttpSuccess(NamedTuple):
     response: TossInvestResponseMeta
 
 
-class SessionLike(Protocol):
-    def request(self, method: str, url: str, **kwargs: Any) -> Any: ...
+type SessionLike = Any
 
 
 def build_url(
