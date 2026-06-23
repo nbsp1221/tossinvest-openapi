@@ -6,10 +6,10 @@ import type {
   TossInvestRequestOptions,
   TossInvestWithResponse,
 } from './types.js';
+import { DEFAULT_USER_AGENT } from './version.js';
 
 const DEFAULT_BASE_URL = 'https://openapi.tossinvest.com';
 const DEFAULT_TIMEOUT_MS = 30_000;
-const DEFAULT_USER_AGENT = 'tossinvest-openapi-js/0.0.0';
 
 type ApiEnvelope<TData> = { result?: TData };
 type WithResponseOptions = TossInvestRequestOptions & { withResponse: true };

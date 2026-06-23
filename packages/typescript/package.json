@@ -1,7 +1,8 @@
 {
   "name": "tossinvest-openapi",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Unofficial TypeScript SDK for Toss Securities Open API",
+  "license": "MIT",
   "keywords": [
     "finance",
     "openapi",
@@ -31,19 +32,26 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
+    "LICENSE",
     "README.md",
     "README.en.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean --sourcemap --target node22",
+    "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false --check",
+    "check:version": "node scripts/sync-version.mjs --check",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "generate:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false",
-    "check:types": "openapi-typescript ../../spec/upstream/openapi.json -o src/generated/openapi.ts --default-non-nullable false --check",
     "lint": "eslint .",
     "test": "vitest run test/unit test/integration",
     "test:integration": "vitest run test/integration",
     "test:unit": "vitest run test/unit",
+    "sync:version": "node scripts/sync-version.mjs",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -54,7 +62,7 @@
     "prettier": "3.8.4",
     "tsup": "8.5.1",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.61.1",
+    "typescript-eslint": "8.62.0",
     "vitest": "4.1.9"
   },
   "engines": {

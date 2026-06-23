@@ -17,3 +17,7 @@ run = "pnpm test"
 [tasks.build]
 description = "Build TypeScript package"
 run = "pnpm build"
+
+[tasks."check:version"]
+description = "Check TypeScript package version constants"
+run = "pnpm check:version"

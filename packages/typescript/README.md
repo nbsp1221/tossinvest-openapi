@@ -11,6 +11,7 @@
 ## 요구사항
 
 - Node.js 22 이상
+- ESM-only runtime
 - Toss Securities Open API client credentials
 
 ## 설치

@@ -1,0 +1,53 @@
+name: Release TypeScript
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: startsWith(github.event.release.tag_name, 'typescript-v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up mise
+        uses: jdx/mise-action@v4
+
+      - name: Verify release tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          package_version="$(node -p "require('./packages/typescript/package.json').version")"
+          expected_tag="typescript-v${package_version}"
+
+          if [ "$RELEASE_TAG" != "$expected_tag" ]; then
+            echo "Release tag ($RELEASE_TAG) must match TypeScript package version ($expected_tag)."
+            exit 1
+          fi
+
+      - name: Set up npm for trusted publishing
+        run: npm install --global npm@11.17.0
+
+      - name: Install dependencies
+        run: mise run install
+
+      - name: Run checks
+        run: mise run check
+
+      - name: Verify package contents
+        run: pnpm --dir packages/typescript pack --dry-run
+
+      - name: Publish package
+        run: npm publish --access public
+        working-directory: packages/typescript

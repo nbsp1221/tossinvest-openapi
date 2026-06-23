@@ -43,4 +43,4 @@ run = "node scripts/check-openapi.mjs"
 
 [tasks.check]
 description = "Run all scaffold verification checks"
-depends = ["lint", "format", "typecheck", "test", "build", "spec:check"]
+depends = ["lint", "format", "typecheck", "test", "build", "spec:check", "//packages/typescript:check:version"]
