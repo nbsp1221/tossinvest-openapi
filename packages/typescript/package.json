@@ -4,11 +4,16 @@
   "description": "Unofficial TypeScript SDK for Toss Securities Open API",
   "license": "MIT",
   "keywords": [
+    "api-client",
     "finance",
+    "korean-stock",
     "openapi",
     "sdk",
+    "stock-trading",
     "toss",
+    "toss-securities",
     "tossinvest",
+    "trading-api",
     "typescript"
   ],
   "homepage": "https://github.com/nbsp1221/tossinvest-openapi#readme",
@@ -32,6 +37,7 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
+    "examples",
     "LICENSE",
     "README.md",
     "README.en.md"

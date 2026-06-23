@@ -1,18 +1,14 @@
 # tossinvest-openapi
 
+[![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+
 Unofficial TypeScript SDK for Toss Securities Open API.
 
 > [!NOTE]
 > This package uses only official documented OpenAPI endpoints. It is not
 > provided, endorsed, or supported by Toss Securities or Viva Republica.
 
-[한국어](README.md) | English
-
-## Requirements
-
-- Node.js 22 or newer
-- ESM-only runtime
-- Toss Securities Open API client credentials
+[한국어](README.md)
 
 ## Installation
 
@@ -20,7 +16,7 @@ Unofficial TypeScript SDK for Toss Securities Open API.
 pnpm add tossinvest-openapi
 ```
 
-## Quick Start
+## First Request
 
 ```ts
 import { TossInvestClient } from 'tossinvest-openapi';
@@ -42,6 +38,12 @@ const prices = await client.getPrices({ symbols: '005930,AAPL' });
 
 console.log({ holdings, prices });
 ```
+
+## Requirements
+
+- Node.js 22 or newer
+- ESM-only runtime
+- Toss Securities Open API client credentials
 
 ## Credentials and Authentication
 
@@ -194,14 +196,31 @@ const detail = await client.getOrder({
 });
 ```
 
-## Scope
+## API Coverage
 
-The TypeScript SDK exposes flat methods for every business operation in the pinned Toss Securities OpenAPI 1.1.1 document, including account, market data, order, and order-info APIs.
+The TypeScript SDK exposes flat methods for the business operations in the pinned Toss Securities OpenAPI 1.1.1 document.
 
-Python is maintained separately in the same polyglot repository.
+| Area                                                      | Supported |
+| --------------------------------------------------------- | --------- |
+| OAuth2 Client Credentials authentication                  | Yes       |
+| Accounts, balances, and holdings                          | Yes       |
+| Domestic and overseas market data                         | Yes       |
+| Buying power, sellable quantity, and commission prechecks | Yes       |
+| Create, modify, and cancel orders                         | Yes       |
+| Order list and order detail lookup                        | Yes       |
+| WebSocket/realtime streaming                              | No        |
+
+## Examples
+
+- [Account and holdings lookup](examples/account-holdings.ts)
+- [Market price lookup](examples/market-prices.ts)
+- [Error handling](examples/error-handling.ts)
+- [Place an order](examples/place-order.ts)
 
 ## Links
 
 - [Repository README](https://github.com/nbsp1221/tossinvest-openapi#readme)
 - [Official Toss Securities Open API docs](https://developers.tossinvest.com/docs)
+- [CHANGELOG](https://github.com/nbsp1221/tossinvest-openapi/blob/main/CHANGELOG.md)
+- [SECURITY](https://github.com/nbsp1221/tossinvest-openapi/blob/main/SECURITY.md)
 - [LICENSE](https://github.com/nbsp1221/tossinvest-openapi/blob/main/LICENSE)

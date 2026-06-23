@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest SDK behavior, documentation, or API coverage improvements
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change?
+    validations:
+      required: true
+  - type: input
+    id: api
+    attributes:
+      label: Related Toss Securities Open API endpoint
+      placeholder: GET /...
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Do not include credentials, account data, holdings, or order details.
