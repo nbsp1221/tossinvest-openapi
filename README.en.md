@@ -82,3 +82,5 @@ The TypeScript package is prepared for npm Trusted Publishing. When adding the G
 The TypeScript publish workflow runs when a GitHub Release is published, and release tags use the `typescript-v` prefix, such as `typescript-v0.1.0`. npm Trusted Publishing requires a GitHub-hosted runner and npm CLI 11.5.1 or newer, so the release workflow uses npm 11.17.0.
 
 npm Trusted Publisher settings are managed from npm package settings. If the package does not exist on the npm registry yet, package settings may not be available, so the first public version may need to be created through a direct publish flow with npm account 2FA first.
+
+After publishing the first `0.1.0` version directly, do not run the publish workflow again with a GitHub Release for the same version. Configure Trusted Publisher settings, then use the GitHub Release publish workflow from the next version onward. The release workflow only accepts `typescript-v<package.json version>` tags.
