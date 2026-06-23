@@ -27,7 +27,7 @@ class TossInvestClient:
         user_agent: str = DEFAULT_USER_AGENT,
     ) -> None:
         self._base_url = base_url
-        self._session = session or requests.Session()
+        self._session = session if session is not None else requests.Session()
         self._owns_session = session is None
         self._timeout = timeout
         self._user_agent = user_agent

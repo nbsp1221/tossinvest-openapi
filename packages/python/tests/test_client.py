@@ -63,6 +63,23 @@ def test_client_close_does_not_close_caller_owned_session() -> None:
     assert session.closed is False
 
 
+def test_client_uses_caller_owned_session_even_when_it_is_falsy() -> None:
+    class FalsySession(FakeSession):
+        def __bool__(self) -> bool:
+            return False
+
+    session = FalsySession([oauth_response("manual-token")])
+    client = TossInvestClient(
+        client_id="client",
+        client_secret="secret",
+        session=session,
+    )
+
+    assert client.issue_oauth2_token()["access_token"] == "manual-token"
+    client.close()
+    assert session.closed is False
+
+
 def test_client_context_manager_closes_owned_session() -> None:
     client = TossInvestClient(client_id="client", client_secret="secret")
 
