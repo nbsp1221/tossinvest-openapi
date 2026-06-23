@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Toss Securities OpenAPI](https://img.shields.io/badge/Toss%20Securities%20OpenAPI-1.1.1-blue)
 
-토스증권 Open API를 TypeScript와 Python에서 사용하기 위한 비공식 SDK 프로젝트입니다.
+토스증권 Open API를 위한 비공식 SDK 프로젝트입니다. 현재 사용 가능한 패키지는 TypeScript SDK이며, Python SDK는 계획 중입니다.
 
 > [!NOTE]
 > 이 프로젝트는 토스증권 공식 OpenAPI 문서에 공개된 엔드포인트만 사용합니다.
@@ -18,6 +18,8 @@
 현재 사용 가능한 패키지는 TypeScript SDK입니다.
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
@@ -41,15 +43,15 @@ console.log({ accounts, prices });
 
 ## 패키지 상태
 
-| 패키지           | 상태                | 설명                                                                      |
-| ---------------- | ------------------- | ------------------------------------------------------------------------- |
-| TypeScript       | 구현됨, pre-release | 공식 OpenAPI 1.1.1의 business operation을 flat method로 제공합니다.       |
-| Python           | 계획됨, scaffolded  | 폴리글랏 구조를 유지하기 위한 패키지이며 아직 사용 가능한 SDK는 아닙니다. |
-| OpenAPI contract | pinned              | `spec/upstream/openapi.json`을 기준으로 타입을 생성합니다.                |
+| 패키지     | 상태           | 설명                                                              |
+| ---------- | -------------- | ----------------------------------------------------------------- |
+| TypeScript | 사용 가능, 0.x | 공식 OpenAPI 1.1.1의 계좌, 시세, 주문 API를 제공합니다.           |
+| Python     | 계획됨         | 폴리글랏 구조를 유지하기 위한 패키지이며 아직 사용할 수 없습니다. |
+| OpenAPI    | 1.1.1 기준     | 공식 OpenAPI 문서를 기준으로 타입과 메서드를 관리합니다.          |
 
 ## 지원 범위
 
-TypeScript SDK는 pinned Toss Securities OpenAPI 1.1.1 문서의 business operation을 지원합니다.
+TypeScript SDK는 Toss Securities OpenAPI 1.1.1 문서의 주요 API를 지원합니다.
 
 | 영역                                           | 지원   |
 | ---------------------------------------------- | ------ |
@@ -90,13 +92,7 @@ mise run check
 
 ## 릴리즈
 
-TypeScript 패키지는 npm Trusted Publishing을 기준으로 준비되어 있습니다. npmjs.com의 package settings에서 GitHub Actions trusted publisher를 추가할 때 workflow filename은 `release-typescript.yml`로 설정합니다.
-
-TypeScript 배포는 GitHub Release를 publish할 때 실행되며, tag는 `typescript-v0.1.0`처럼 `typescript-v` prefix를 사용합니다. npm Trusted Publishing은 GitHub-hosted runner와 npm CLI 11.5.1 이상이 필요하므로 release workflow에서 npm 11.17.0을 사용합니다.
-
-첫 `0.1.0`을 직접 publish한 뒤에는 같은 버전의 GitHub Release로 publish workflow를 실행하지 않습니다. Trusted Publisher 설정 후 다음 버전부터 GitHub Release publish workflow를 사용합니다. release workflow는 `typescript-v<package.json version>` tag만 허용합니다.
-
-릴리즈 기록은 [CHANGELOG](CHANGELOG.md)를 확인하세요.
+TypeScript 패키지는 npm에 `tossinvest-openapi`로 배포됩니다. 버전별 변경 사항은 [CHANGELOG](CHANGELOG.md)를 확인하세요.
 
 ## 보안
 

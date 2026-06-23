@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Toss Securities OpenAPI](https://img.shields.io/badge/Toss%20Securities%20OpenAPI-1.1.1-blue)
 
-Unofficial SDK project for using Toss Securities Open API from TypeScript and Python.
+Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is currently usable, and the Python SDK is planned.
 
 > [!NOTE]
 > This project uses only endpoints published in the official Toss Securities Open API documentation.
@@ -18,6 +18,8 @@ Unofficial SDK project for using Toss Securities Open API from TypeScript and Py
 The currently usable package is the TypeScript SDK.
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
@@ -41,15 +43,15 @@ console.log({ accounts, prices });
 
 ## Package Status
 
-| Package          | Status                   | Description                                                                               |
-| ---------------- | ------------------------ | ----------------------------------------------------------------------------------------- |
-| TypeScript       | Implemented, pre-release | Provides flat methods for the business operations in the official OpenAPI 1.1.1 document. |
-| Python           | Planned, scaffolded      | Kept as part of the polyglot workspace, but not yet a usable SDK.                         |
-| OpenAPI contract | Pinned                   | Types are generated from `spec/upstream/openapi.json`.                                    |
+| Package    | Status         | Description                                                             |
+| ---------- | -------------- | ----------------------------------------------------------------------- |
+| TypeScript | Usable, 0.x    | Provides account, market data, and order APIs from OpenAPI 1.1.1.       |
+| Python     | Planned        | Kept as part of the polyglot workspace, but not yet usable.             |
+| OpenAPI    | Based on 1.1.1 | Types and methods are maintained against the official OpenAPI document. |
 
 ## Supported Scope
 
-The TypeScript SDK supports the business operations in the pinned Toss Securities OpenAPI 1.1.1 document.
+The TypeScript SDK supports the main APIs in the Toss Securities OpenAPI 1.1.1 document.
 
 | Area                                                      | Supported |
 | --------------------------------------------------------- | --------- |
@@ -90,13 +92,7 @@ mise run check
 
 ## Release
 
-The TypeScript package is prepared for npm Trusted Publishing. When adding the GitHub Actions trusted publisher in the npmjs.com package settings, set the workflow filename to `release-typescript.yml`.
-
-The TypeScript publish workflow runs when a GitHub Release is published, and release tags use the `typescript-v` prefix, such as `typescript-v0.1.0`. npm Trusted Publishing requires a GitHub-hosted runner and npm CLI 11.5.1 or newer, so the release workflow uses npm 11.17.0.
-
-After publishing the first `0.1.0` version directly, do not run the publish workflow again with a GitHub Release for the same version. Configure Trusted Publisher settings, then use the GitHub Release publish workflow from the next version onward. The release workflow only accepts `typescript-v<package.json version>` tags.
-
-See [CHANGELOG](CHANGELOG.md) for release history.
+The TypeScript package is published to npm as `tossinvest-openapi`. See [CHANGELOG](CHANGELOG.md) for release history.
 
 ## Security
 

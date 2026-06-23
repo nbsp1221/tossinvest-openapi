@@ -13,6 +13,8 @@ Unofficial TypeScript SDK for Toss Securities Open API.
 ## Installation
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
@@ -198,7 +200,7 @@ const detail = await client.getOrder({
 
 ## API Coverage
 
-The TypeScript SDK exposes flat methods for the business operations in the pinned Toss Securities OpenAPI 1.1.1 document.
+The TypeScript SDK exposes flat methods for the main APIs in the Toss Securities OpenAPI 1.1.1 document.
 
 | Area                                                      | Supported |
 | --------------------------------------------------------- | --------- |
@@ -212,10 +214,10 @@ The TypeScript SDK exposes flat methods for the business operations in the pinne
 
 ## Examples
 
-- [Account and holdings lookup](examples/account-holdings.ts)
-- [Market price lookup](examples/market-prices.ts)
-- [Error handling](examples/error-handling.ts)
-- [Place an order](examples/place-order.ts)
+- [Account and holdings lookup](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/account-holdings.ts)
+- [Market price lookup](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/market-prices.ts)
+- [Error handling](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/error-handling.ts)
+- [Place an order](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/place-order.ts)
 
 ## Links
 

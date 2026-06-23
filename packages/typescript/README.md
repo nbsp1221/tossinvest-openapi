@@ -13,6 +13,8 @@
 ## 설치
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
@@ -198,7 +200,7 @@ const detail = await client.getOrder({
 
 ## API Coverage
 
-TypeScript SDK는 pinned Toss Securities OpenAPI 1.1.1 문서의 business operation을 flat method로 제공합니다.
+TypeScript SDK는 Toss Securities OpenAPI 1.1.1 문서의 주요 API를 flat method로 제공합니다.
 
 | 영역                                           | 지원   |
 | ---------------------------------------------- | ------ |
@@ -212,10 +214,10 @@ TypeScript SDK는 pinned Toss Securities OpenAPI 1.1.1 문서의 business operat
 
 ## Examples
 
-- [계좌와 보유 종목 조회](examples/account-holdings.ts)
-- [시세 조회](examples/market-prices.ts)
-- [에러 처리](examples/error-handling.ts)
-- [주문 생성](examples/place-order.ts)
+- [계좌와 보유 종목 조회](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/account-holdings.ts)
+- [시세 조회](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/market-prices.ts)
+- [에러 처리](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/error-handling.ts)
+- [주문 생성](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/place-order.ts)
 
 ## 링크
 
