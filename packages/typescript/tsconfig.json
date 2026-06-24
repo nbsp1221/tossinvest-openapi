@@ -9,6 +9,10 @@
     "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
     "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "tossinvest-openapi": ["./src/index.ts"]
+    },
     "rootDir": ".",
     "skipLibCheck": true,
     "sourceMap": true,
@@ -17,5 +21,5 @@
     "types": ["node"],
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "test"]
+  "include": ["examples", "src", "test"]
 }

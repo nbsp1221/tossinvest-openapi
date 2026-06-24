@@ -1,26 +1,24 @@
 # tossinvest-openapi
 
+[![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+
 Unofficial TypeScript SDK for Toss Securities Open API.
 
 > [!NOTE]
 > This package uses only official documented OpenAPI endpoints. It is not
 > provided, endorsed, or supported by Toss Securities or Viva Republica.
 
-[한국어](README.md) | English
-
-## Requirements
-
-- Node.js 22 or newer
-- ESM-only runtime
-- Toss Securities Open API client credentials
+[한국어](README.md)
 
 ## Installation
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
-## Quick Start
+## First Request
 
 ```ts
 import { TossInvestClient } from 'tossinvest-openapi';
@@ -40,8 +38,17 @@ if (accountSeq === undefined) {
 const holdings = await client.getHoldings({ accountSeq });
 const prices = await client.getPrices({ symbols: '005930,AAPL' });
 
-console.log({ holdings, prices });
+console.log({
+  holdingCount: holdings.items.length,
+  priceCount: prices.length,
+});
 ```
+
+## Requirements
+
+- Node.js 22 or newer
+- ESM-only runtime
+- Toss Securities Open API client credentials
 
 ## Credentials and Authentication
 
@@ -91,20 +98,10 @@ const openOrders = await client.getOrders({ accountSeq, status: 'OPEN' });
 ```ts
 const buyingPower = await client.getBuyingPower({
   accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  price: '70000',
+  currency: 'KRW',
 });
 
-const commissions = await client.getCommissions({
-  accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  quantity: '1',
-  price: '70000',
-});
+const commissions = await client.getCommissions({ accountSeq });
 ```
 
 ## Responses
@@ -121,7 +118,6 @@ Use `{ withResponse: true }` when you need the original response envelope or HTT
 const result = await client.getAccounts({ withResponse: true });
 
 console.log(result.data);
-console.log(result.raw);
 console.log(result.response.status);
 console.log(result.response.requestId);
 ```
@@ -194,14 +190,31 @@ const detail = await client.getOrder({
 });
 ```
 
-## Scope
+## API Coverage
 
-The TypeScript SDK exposes flat methods for every business operation in the pinned Toss Securities OpenAPI 1.1.1 document, including account, market data, order, and order-info APIs.
+The TypeScript SDK exposes flat methods for the main APIs in the Toss Securities OpenAPI 1.1.1 document.
 
-Python is maintained separately in the same polyglot repository.
+| Area                                                      | Supported |
+| --------------------------------------------------------- | --------- |
+| OAuth2 Client Credentials authentication                  | Yes       |
+| Accounts, balances, and holdings                          | Yes       |
+| Domestic and overseas market data                         | Yes       |
+| Buying power, sellable quantity, and commission prechecks | Yes       |
+| Create, modify, and cancel orders                         | Yes       |
+| Order list and order detail lookup                        | Yes       |
+| WebSocket/realtime streaming                              | No        |
+
+## Examples
+
+- [Account and holdings lookup](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/account-holdings.ts)
+- [Market price lookup](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/market-prices.ts)
+- [Error handling](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/error-handling.ts)
+- [Place an order](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/place-order.ts)
 
 ## Links
 
 - [Repository README](https://github.com/nbsp1221/tossinvest-openapi#readme)
 - [Official Toss Securities Open API docs](https://developers.tossinvest.com/docs)
+- [CHANGELOG](https://github.com/nbsp1221/tossinvest-openapi/blob/main/CHANGELOG.md)
+- [SECURITY](https://github.com/nbsp1221/tossinvest-openapi/blob/main/SECURITY.md)
 - [LICENSE](https://github.com/nbsp1221/tossinvest-openapi/blob/main/LICENSE)

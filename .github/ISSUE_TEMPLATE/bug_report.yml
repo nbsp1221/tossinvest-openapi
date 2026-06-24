@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a reproducible SDK bug
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, access tokens, account numbers, holdings, order IDs, or other sensitive financial data.
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      description: Package name and version
+      placeholder: tossinvest-openapi@0.1.0
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime
+      description: Node.js, pnpm, and operating system versions
+      placeholder: Node.js 22.x, pnpm 10.x, macOS/Linux/Windows
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include only sanitized code and responses.
+      render: ts
+    validations:
+      required: true
