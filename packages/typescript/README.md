@@ -1,26 +1,24 @@
 # tossinvest-openapi
 
+[![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+
 토스증권 Open API를 위한 비공식 TypeScript SDK입니다.
 
 > [!NOTE]
 > 이 패키지는 공식 문서에 공개된 OpenAPI 엔드포인트만 사용합니다.
 > 토스증권 또는 비바리퍼블리카가 공식 제공하거나 보증하는 라이브러리가 아닙니다.
 
-한국어 | [English](README.en.md)
-
-## 요구사항
-
-- Node.js 22 이상
-- ESM-only runtime
-- Toss Securities Open API client credentials
+[English](README.en.md)
 
 ## 설치
 
 ```sh
+npm install tossinvest-openapi
+# or
 pnpm add tossinvest-openapi
 ```
 
-## 빠른 시작
+## 첫 요청
 
 ```ts
 import { TossInvestClient } from 'tossinvest-openapi';
@@ -40,8 +38,17 @@ if (accountSeq === undefined) {
 const holdings = await client.getHoldings({ accountSeq });
 const prices = await client.getPrices({ symbols: '005930,AAPL' });
 
-console.log({ holdings, prices });
+console.log({
+  holdingCount: holdings.items.length,
+  priceCount: prices.length,
+});
 ```
+
+## 요구사항
+
+- Node.js 22 이상
+- ESM-only runtime
+- Toss Securities Open API client credentials
 
 ## Credentials와 인증
 
@@ -91,20 +98,10 @@ const openOrders = await client.getOrders({ accountSeq, status: 'OPEN' });
 ```ts
 const buyingPower = await client.getBuyingPower({
   accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  price: '70000',
+  currency: 'KRW',
 });
 
-const commissions = await client.getCommissions({
-  accountSeq,
-  symbol: '005930',
-  side: 'BUY',
-  orderType: 'LIMIT',
-  quantity: '1',
-  price: '70000',
-});
+const commissions = await client.getCommissions({ accountSeq });
 ```
 
 ## 응답
@@ -121,7 +118,6 @@ const accounts = await client.getAccounts();
 const result = await client.getAccounts({ withResponse: true });
 
 console.log(result.data);
-console.log(result.raw);
 console.log(result.response.status);
 console.log(result.response.requestId);
 ```
@@ -194,14 +190,31 @@ const detail = await client.getOrder({
 });
 ```
 
-## 범위
+## API Coverage
 
-TypeScript SDK는 pinned Toss Securities OpenAPI 1.1.1 문서의 모든 business operation을 flat method로 제공합니다. 계좌, 시세, 주문, 주문 정보 API를 포함합니다.
+TypeScript SDK는 Toss Securities OpenAPI 1.1.1 문서의 주요 API를 flat method로 제공합니다.
 
-Python은 같은 polyglot repository 안에서 별도 패키지로 관리됩니다.
+| 영역                                           | 지원   |
+| ---------------------------------------------- | ------ |
+| OAuth2 Client Credentials 인증                 | 지원   |
+| 계좌 목록/잔고/보유 종목                       | 지원   |
+| 국내/해외 시세 조회                            | 지원   |
+| 주문 가능 금액/매도 가능 수량/수수료 사전 확인 | 지원   |
+| 주문 생성/정정/취소                            | 지원   |
+| 주문 목록/상세 조회                            | 지원   |
+| WebSocket/실시간 streaming                     | 미지원 |
+
+## Examples
+
+- [계좌와 보유 종목 조회](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/account-holdings.ts)
+- [시세 조회](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/market-prices.ts)
+- [에러 처리](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/error-handling.ts)
+- [주문 생성](https://github.com/nbsp1221/tossinvest-openapi/blob/main/packages/typescript/examples/place-order.ts)
 
 ## 링크
 
 - [Repository README](https://github.com/nbsp1221/tossinvest-openapi#readme)
 - [Official Toss Securities Open API docs](https://developers.tossinvest.com/docs)
+- [CHANGELOG](https://github.com/nbsp1221/tossinvest-openapi/blob/main/CHANGELOG.md)
+- [SECURITY](https://github.com/nbsp1221/tossinvest-openapi/blob/main/SECURITY.md)
 - [LICENSE](https://github.com/nbsp1221/tossinvest-openapi/blob/main/LICENSE)
