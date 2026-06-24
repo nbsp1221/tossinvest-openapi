@@ -11,11 +11,11 @@ Unofficial sync Python SDK for Toss Securities Open API.
 
 | Area | Status |
 | --- | --- |
-| Runtime SDK | Implemented, pre-release |
+| Runtime SDK | Usable, 0.x |
 | Transport | Sync-only, requests |
 | Typing | `py.typed`, standard Python typing |
 | Runtime validation | Not included |
-| Release package | Not published |
+| Release package | PyPI |
 
 ## Requirements
 
@@ -24,8 +24,9 @@ Unofficial sync Python SDK for Toss Securities Open API.
 
 ## Installation
 
-This package is managed inside the repository workspace. PyPI publication is
-not part of the current MVP.
+```sh
+pip install tossinvest-openapi
+```
 
 ## Quick Start
 

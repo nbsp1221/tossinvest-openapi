@@ -2,10 +2,11 @@
 
 [![CI](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml/badge.svg)](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+[![PyPI version](https://img.shields.io/pypi/v/tossinvest-openapi.svg)](https://pypi.org/project/tossinvest-openapi/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Toss Securities OpenAPI](https://img.shields.io/badge/Toss%20Securities%20OpenAPI-1.1.1-blue)
 
-Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is usable through npm, and the Python SDK is an implemented pre-release package inside this repository workspace.
+Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is available on npm, and the Python SDK is available on PyPI.
 
 > [!NOTE]
 > This project uses only endpoints published in the official Toss Securities Open API documentation.
@@ -40,7 +41,11 @@ console.log({
 });
 ```
 
-The Python SDK is currently usable inside this repository workspace and has not been published to PyPI yet.
+The Python SDK can be installed from PyPI.
+
+```sh
+pip install tossinvest-openapi
+```
 
 ```python
 from tossinvest_openapi import TossInvestClient
@@ -59,11 +64,11 @@ with TossInvestClient(
 
 ## Package Status
 
-| Package    | Status                  | Description                                                                       |
-| ---------- | ----------------------- | --------------------------------------------------------------------------------- |
-| TypeScript | Usable, 0.x             | Provides account, market data, and order APIs from OpenAPI 1.1.1.                 |
-| Python     | Implemented, pre-release | Provides a sync client and has not been published to PyPI yet.                    |
-| OpenAPI    | Based on 1.1.1          | Types and methods are maintained against the official OpenAPI document.           |
+| Package    | Status      | Description                                                       |
+| ---------- | ----------- | ----------------------------------------------------------------- |
+| TypeScript | Usable, 0.x | Provides account, market data, and order APIs from OpenAPI 1.1.1. |
+| Python     | Usable, 0.x | Provides sync account, market data, and order APIs.               |
+| OpenAPI    | Based on 1.1.1 | Types and methods are maintained against the official OpenAPI document. |
 
 ## Supported Scope
 
@@ -108,9 +113,7 @@ mise run check
 
 ## Release
 
-The TypeScript package is published to npm as `tossinvest-openapi`. See [CHANGELOG](CHANGELOG.md) for release history.
-
-The Python package has not been published to PyPI yet.
+The TypeScript package is published to npm as `tossinvest-openapi`. The Python package is published to PyPI as `tossinvest-openapi`. See [CHANGELOG](CHANGELOG.md) for release history.
 
 ## Security
 

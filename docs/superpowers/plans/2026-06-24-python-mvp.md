@@ -19,7 +19,8 @@
 - Do not add runtime response validation.
 - Do not add Pydantic or msgspec as dependencies.
 - Do not add live integration tests requiring real Toss credentials.
-- Do not publish to PyPI.
+- Do not publish to PyPI before merge; user-facing docs should assume the
+  immediate post-merge PyPI release state.
 - Move Python package version from `0.0.0` to `0.1.0`.
 - Include all 20 OpenAPI 1.1.1 business operations.
 - Public client methods use `snake_case` and keyword-only parameters.
@@ -2311,11 +2312,11 @@ Unofficial sync Python SDK for Toss Securities Open API.
 
 | Area | Status |
 | --- | --- |
-| Runtime SDK | Implemented, pre-release |
+| Runtime SDK | Usable, 0.x |
 | Transport | Sync-only, requests |
 | Typing | `py.typed`, standard Python typing |
 | Runtime validation | Not included |
-| Release package | Not published |
+| Release package | PyPI |
 
 ## Requirements
 
@@ -2324,8 +2325,9 @@ Unofficial sync Python SDK for Toss Securities Open API.
 
 ## Installation
 
-This package is managed inside the repository workspace. PyPI publication is
-not part of the current MVP.
+```sh
+pip install tossinvest-openapi
+```
 
 ## Quick Start
 
@@ -2569,4 +2571,4 @@ Report:
 - Branch name.
 - Final commit hash.
 - Verification commands and pass/fail status.
-- Any intentionally excluded scope: async, retry, runtime validation, PyPI publish.
+- Any intentionally excluded scope: async, retry, runtime validation, live PyPI publish before merge.

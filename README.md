@@ -2,10 +2,11 @@
 
 [![CI](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml/badge.svg)](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+[![PyPI version](https://img.shields.io/pypi/v/tossinvest-openapi.svg)](https://pypi.org/project/tossinvest-openapi/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Toss Securities OpenAPI](https://img.shields.io/badge/Toss%20Securities%20OpenAPI-1.1.1-blue)
 
-토스증권 Open API를 위한 비공식 SDK 프로젝트입니다. TypeScript SDK는 npm 패키지로 사용할 수 있고, Python SDK는 저장소 workspace 안에서 구현된 pre-release 패키지입니다.
+토스증권 Open API를 위한 비공식 SDK 프로젝트입니다. TypeScript SDK는 npm 패키지로, Python SDK는 PyPI 패키지로 사용할 수 있습니다.
 
 > [!NOTE]
 > 이 프로젝트는 토스증권 공식 OpenAPI 문서에 공개된 엔드포인트만 사용합니다.
@@ -40,7 +41,11 @@ console.log({
 });
 ```
 
-Python SDK는 현재 repository workspace 안에서 사용할 수 있으며 PyPI 배포는 아직 하지 않았습니다.
+Python SDK는 PyPI 패키지로 설치할 수 있습니다.
+
+```sh
+pip install tossinvest-openapi
+```
 
 ```python
 from tossinvest_openapi import TossInvestClient
@@ -59,11 +64,11 @@ with TossInvestClient(
 
 ## 패키지 상태
 
-| 패키지     | 상태                  | 설명                                                                 |
-| ---------- | --------------------- | -------------------------------------------------------------------- |
-| TypeScript | 사용 가능, 0.x        | 공식 OpenAPI 1.1.1의 계좌, 시세, 주문 API를 제공합니다.              |
-| Python     | 구현됨, pre-release   | sync client를 제공하며, 현재 PyPI에는 배포하지 않았습니다.           |
-| OpenAPI    | 1.1.1 기준            | 공식 OpenAPI 문서를 기준으로 타입과 메서드를 관리합니다.             |
+| 패키지     | 상태           | 설명                                                    |
+| ---------- | -------------- | ------------------------------------------------------- |
+| TypeScript | 사용 가능, 0.x | 공식 OpenAPI 1.1.1의 계좌, 시세, 주문 API를 제공합니다. |
+| Python     | 사용 가능, 0.x | sync client로 계좌, 시세, 주문 API를 제공합니다.        |
+| OpenAPI    | 1.1.1 기준     | 공식 OpenAPI 문서를 기준으로 타입과 메서드를 관리합니다. |
 
 ## 지원 범위
 
@@ -108,9 +113,7 @@ mise run check
 
 ## 릴리즈
 
-TypeScript 패키지는 npm에 `tossinvest-openapi`로 배포됩니다. 버전별 변경 사항은 [CHANGELOG](CHANGELOG.md)를 확인하세요.
-
-Python 패키지는 현재 PyPI에 배포하지 않았습니다.
+TypeScript 패키지는 npm에 `tossinvest-openapi`로 배포됩니다. Python 패키지는 PyPI에 `tossinvest-openapi`로 배포됩니다. 버전별 변경 사항은 [CHANGELOG](CHANGELOG.md)를 확인하세요.
 
 ## 보안
 

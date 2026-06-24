@@ -18,7 +18,8 @@ interfaces, predictable errors, lifecycle management, tests, and documentation.
 - No runtime response validation.
 - No Pydantic or msgspec dependency in the default package.
 - No live integration tests that require real Toss credentials.
-- No PyPI publication as part of the MVP implementation.
+- No live PyPI publication before merge; user-facing docs are written for the
+  post-merge release state.
 - No browser, mobile, or non-CPython runtime support claim.
 
 ## Decisions
@@ -204,7 +205,7 @@ package exposes order operations that can change account state.
 
 ### Package Version and Status
 
-Python moves from scaffold-only `0.0.0` to implemented pre-release `0.1.0`.
+Python moves from scaffold-only `0.0.0` to released `0.1.0`.
 
 Update:
 
@@ -214,7 +215,8 @@ Update:
 - root README status table
 - English README equivalents if present
 
-PyPI publishing is outside this MVP. Package build verification is in scope.
+PyPI publication is expected immediately after merge, so user-facing
+documentation should describe the package as installable from PyPI.
 
 ## Proposed File Structure
 
