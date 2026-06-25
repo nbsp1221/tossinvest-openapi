@@ -1,10 +1,12 @@
 [project]
 name = "tossinvest-openapi"
-version = "0.0.0"
+version = "0.1.0"
 description = "Unofficial SDK for Toss Securities Open API"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+  "requests==2.34.2",
+]
 
 [dependency-groups]
 dev = [

@@ -2,10 +2,11 @@
 
 [![CI](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml/badge.svg)](https://github.com/nbsp1221/tossinvest-openapi/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/tossinvest-openapi.svg)](https://www.npmjs.com/package/tossinvest-openapi)
+[![PyPI version](https://img.shields.io/pypi/v/tossinvest-openapi.svg)](https://pypi.org/project/tossinvest-openapi/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Toss Securities OpenAPI](https://img.shields.io/badge/Toss%20Securities%20OpenAPI-1.1.1-blue)
 
-Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is currently usable, and the Python SDK is planned.
+Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is available on npm, and the Python SDK is available on PyPI.
 
 > [!NOTE]
 > This project uses only endpoints published in the official Toss Securities Open API documentation.
@@ -15,7 +16,7 @@ Unofficial SDK project for Toss Securities Open API. The TypeScript SDK is curre
 
 ## Quick Start
 
-The currently usable package is the TypeScript SDK.
+The TypeScript SDK can be installed from npm.
 
 ```sh
 npm install tossinvest-openapi
@@ -40,21 +41,38 @@ console.log({
 });
 ```
 
+The Python SDK can be installed from PyPI.
+
+```sh
+pip install tossinvest-openapi
+```
+
+```python
+from tossinvest_openapi import TossInvestClient
+
+with TossInvestClient(
+    client_id="...",
+    client_secret="...",
+) as client:
+    accounts = client.get_accounts()
+    prices = client.get_prices(symbols="005930,AAPL")
+```
+
 > [!WARNING]
-> Use `clientSecret` only in server-side environments. Do not expose it in
+> Use `clientSecret` / `client_secret` only in server-side environments. Do not expose it in
 > browsers, mobile apps, public repositories, or client bundles.
 
 ## Package Status
 
-| Package    | Status         | Description                                                             |
-| ---------- | -------------- | ----------------------------------------------------------------------- |
-| TypeScript | Usable, 0.x    | Provides account, market data, and order APIs from OpenAPI 1.1.1.       |
-| Python     | Planned        | Kept as part of the polyglot workspace, but not yet usable.             |
+| Package    | Status      | Description                                                       |
+| ---------- | ----------- | ----------------------------------------------------------------- |
+| TypeScript | Usable, 0.x | Provides account, market data, and order APIs from OpenAPI 1.1.1. |
+| Python     | Usable, 0.x | Provides sync account, market data, and order APIs.               |
 | OpenAPI    | Based on 1.1.1 | Types and methods are maintained against the official OpenAPI document. |
 
 ## Supported Scope
 
-The TypeScript SDK supports the main APIs in the Toss Securities OpenAPI 1.1.1 document.
+The SDKs support the main APIs in the Toss Securities OpenAPI 1.1.1 document.
 
 | Area                                                      | Supported |
 | --------------------------------------------------------- | --------- |
@@ -66,11 +84,11 @@ The TypeScript SDK supports the main APIs in the Toss Securities OpenAPI 1.1.1 d
 | Order list and order detail lookup                        | Yes       |
 | WebSocket/realtime streaming                              | No        |
 
-See the [TypeScript package README](packages/typescript/README.md) for detailed usage.
+See the [TypeScript package README](packages/typescript/README.md) and [Python package README](packages/python/README.md) for detailed usage.
 
 ## Why Use This SDK?
 
-- Uses TypeScript types derived from the official Toss Securities Open API schema.
+- Uses TypeScript and Python types derived from the official Toss Securities Open API schema.
 - Handles OAuth2 Client Credentials authentication inside the SDK.
 - Returns unwrapped `result` payloads by default while allowing access to raw responses and HTTP metadata.
 - Exposes order APIs explicitly as state-changing operations.
@@ -95,7 +113,7 @@ mise run check
 
 ## Release
 
-The TypeScript package is published to npm as `tossinvest-openapi`. See [CHANGELOG](CHANGELOG.md) for release history.
+The TypeScript package is published to npm as `tossinvest-openapi`. The Python package is published to PyPI as `tossinvest-openapi`. See [CHANGELOG](CHANGELOG.md) for release history.
 
 ## Security
 
