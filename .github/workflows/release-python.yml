@@ -6,13 +6,11 @@ on:
       - published
 
 jobs:
-  publish:
+  build:
     if: startsWith(github.event.release.tag_name, 'python-v')
     runs-on: ubuntu-latest
-    environment: pypi
     permissions:
       contents: read
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -33,13 +31,39 @@ jobs:
           fi
 
       - name: Install dependencies
-        run: mise run install
+        run: pnpm install && uv sync --locked --all-packages
 
       - name: Run checks
         run: mise run check
 
       - name: Build package
         run: rm -rf dist && uv build --package tossinvest-openapi
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: python-dist
+          path: dist/*
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v8.2.0
+        with:
+          version: "0.9.17"
+
+      - name: Download package artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: python-dist
+          path: dist
 
       - name: Publish package
         run: uv publish --trusted-publishing always dist/*
