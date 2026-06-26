@@ -1,0 +1,45 @@
+name: Release Python
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    if: startsWith(github.event.release.tag_name, 'python-v')
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up mise
+        uses: jdx/mise-action@v4
+
+      - name: Verify release tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          package_version="$(uv version --short --package tossinvest-openapi)"
+          expected_tag="python-v${package_version}"
+
+          if [ "$RELEASE_TAG" != "$expected_tag" ]; then
+            echo "Release tag ($RELEASE_TAG) must match Python package version ($expected_tag)."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: mise run install
+
+      - name: Run checks
+        run: mise run check
+
+      - name: Build package
+        run: rm -rf dist && uv build --package tossinvest-openapi
+
+      - name: Publish package
+        run: uv publish --trusted-publishing always dist/*
