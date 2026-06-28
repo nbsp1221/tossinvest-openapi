@@ -9,13 +9,13 @@ Unofficial sync Python SDK for Toss Securities Open API.
 
 ## Status
 
-| Area | Status |
-| --- | --- |
-| Runtime SDK | Usable, 0.x |
-| Transport | Sync-only, requests |
-| Typing | `py.typed`, standard Python typing |
-| Runtime validation | Not included |
-| Release package | PyPI |
+| Area               | Status                             |
+| ------------------ | ---------------------------------- |
+| Runtime SDK        | Usable, 0.x                        |
+| Transport          | Sync-only, requests                |
+| Typing             | `py.typed`, standard Python typing |
+| Runtime validation | Not included                       |
+| Release package    | PyPI                               |
 
 ## Requirements
 
@@ -40,7 +40,12 @@ with TossInvestClient(
     accounts = client.get_accounts()
     prices = client.get_prices(symbols="005930,AAPL")
 
-print(accounts, prices)
+print(
+    {
+        "account_count": len(accounts),
+        "price_count": len(prices),
+    }
+)
 ```
 
 > [!WARNING]
@@ -68,11 +73,17 @@ Use `with_response=True` when you need the raw envelope or HTTP metadata.
 ```python
 response = client.get_accounts(with_response=True)
 
-print(response.data)
-print(response.raw)
-print(response.response.status_code)
-print(response.response.request_id)
+print(
+    {
+        "account_count": len(response.data),
+        "status_code": response.response.status_code,
+        "request_id": response.response.request_id,
+    }
+)
 ```
+
+Avoid logging `response.raw` unless you have reviewed and redacted the payload.
+It may contain account data, order data, or other sensitive fields.
 
 ## Lifecycle
 
